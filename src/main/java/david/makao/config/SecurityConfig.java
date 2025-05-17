@@ -48,7 +48,10 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
-                                "/process_login"
+                                "/process_login",
+                                "/register",
+                                "/home",
+                                "/navbar"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

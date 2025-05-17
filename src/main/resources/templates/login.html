@@ -2,18 +2,13 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registro</title>
-
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 <div class="container">
     <div class="form-box">
-        <div class="logo-container">
-            <!-- ✅ Logo: usa @ para rutas relativas a static -->
-            <img th:src="@{/images/makao-logo.png}" alt="Logo Makao">
-        </div>
-
         <h2>Iniciar sesión</h2>
 
         <form th:action="@{/login}" method="post">
@@ -34,13 +29,22 @@
             <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Icon">
             Inicia sesión con Google
         </div>
+
+
     </div>
 
     <div class="side-box">
         <h2>¿Nuevo aquí?</h2>
         <p>Crea una cuenta para empezar</p>
         <a th:href="@{/register}">Registrarse</a>
+
+        <!-- Logo al final -->
+        <div class="logo-container">
+            <img th:src="@{/images/makao-logo.png}" alt="Logo Makao">
+        </div>
+
     </div>
 </div>
 </body>
 </html>
+
