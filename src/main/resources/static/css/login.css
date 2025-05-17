@@ -1,15 +1,16 @@
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
+#login-wrapper {
     background: #f0f2f5;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+#login-wrapper * {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 
 .container {
     display: flex;
@@ -169,6 +170,12 @@ body {
     }
     .form-box {
         padding-top: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    #login-wrapper {
+        padding-top: 180px; /* o el valor que necesites */
     }
 }
 

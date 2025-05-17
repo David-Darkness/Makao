@@ -1,0 +1,69 @@
+.navbar-custom {
+    background-color: #aec7f7 !important;
+    box-shadow: 0 2px 8px rgba(100,100,100,0.07);
+    overflow: visible !important;
+}
+.navbar-brand img {
+    height: 55px; /* Mantén un valor pequeño para no afectar el navbar */
+    transform: scale(1.4); /* Aumenta el tamaño visualmente */
+    transform-origin: left center; /* Para que crezca hacia la derecha, no hacia abajo */
+}
+.navbar-custom .container {
+    overflow: visible !important;
+    position: relative; /* necesario para que el z-index funcione */
+}
+
+
+.navbar {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+.navbar-nav {
+    font-weight: 500;
+}
+.btn-login {
+    background-color: #2e477d !important;
+    color: #fff !important;
+    border-radius: 18px !important;
+    padding: 4px 18px !important;
+    font-size: 0.95rem !important;
+    margin-right: 10px !important;
+    border: none !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn-login:hover {
+    background-color: #1f3054 !important; /* Un tono más oscuro para el hover */
+    color: #fff !important;
+}
+
+.dropdown-language .dropdown-toggle {
+    color: #222;
+    font-weight: 500;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+    color: #003fa3;
+}
+
+.dropdown-menu {
+    z-index: 1050 !important;
+}
+
+/* Quitar fondo blanco y bordes redondeados si los hubiera */
+.navbar-custom {
+    background-color: #aec7f7 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+}
+
+/* Por si el contenedor interno agrega fondo blanco */
+.navbar-custom .container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+
+
+
