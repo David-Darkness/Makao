@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+</head>
+<body>
+<div th:fragment="layout"> <!-- 🔧 Fragmento nombrado correctamente -->
+    <div class="admin-container">
+        <nav class="sidebar">
+            <h2>Admin</h2>
+            <ul>
+                <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li><a th:href="@{/admin/paquetes}">Paquetes</a></li>
+                <li><a th:href="@{/admin/lugares}">Lugares</a></li>
+                <li><a th:href="@{/admin/hoteles}">Hoteles</a></li>
+                <li><a th:href="@{/admin/restaurantes}">Restaurantes</a></li>
+                <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div th:replace="~{::content}"></div> <!-- Aquí se inyectará el contenido de cada vista -->
+        </main>
+    </div>
+</div>
+</body>
+</html>

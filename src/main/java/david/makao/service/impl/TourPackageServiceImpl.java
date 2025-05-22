@@ -28,4 +28,26 @@ public class TourPackageServiceImpl implements TourPackageService {
     public List<TourPackageEntity> getPackagesByCity(Long cityId) {
         return tourPackageRepository.findByCity_CityId(cityId);
     }
+
+    @Override
+    public TourPackageEntity getPackageById(Long packageId) {
+        return tourPackageRepository.findById(packageId)
+                .orElse(null); // o lanzar excepción si no existe
+    }
+
+    @Override
+    public TourPackageEntity createPackage(TourPackageEntity packageEntity) {
+        return tourPackageRepository.save(packageEntity);
+    }
+
+    @Override
+    public TourPackageEntity updatePackage(TourPackageEntity packageEntity) {
+        return tourPackageRepository.save(packageEntity);
+    }
+
+    @Override
+    public void deletePackage(Long packageId) {
+        tourPackageRepository.deleteById(packageId);
+    }
+
 }

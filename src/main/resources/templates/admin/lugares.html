@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="admin/layout :: layout">
+<div th:fragment="content">
+    <h1>Lugares</h1>
+
+    <h2>Departamentos</h2>
+    <a th:href="@{/admin/lugares/departamento/nuevo}">Crear nuevo departamento</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dep : ${departamentos}">
+            <td th:text="${dep.departmentId}"></td>
+            <td th:text="${dep.name}"></td>
+            <td th:text="${dep.description}"></td>
+            <td>
+                <a th:href="@{'/admin/lugares/departamento/editar/' + ${dep.departmentId}}">Editar</a>
+                <a th:href="@{'/admin/lugares/departamento/eliminar/' + ${dep.departmentId}}"
+                   onclick="return confirm('¿Estás seguro de eliminar este departamento?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Ciudades</h2>
+    <a th:href="@{/admin/lugares/ciudad/nuevo}">Crear nueva ciudad</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Departamento</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ciudad : ${ciudades}">
+            <td th:text="${ciudad.cityId}"></td>
+            <td th:text="${ciudad.name}"></td>
+            <td th:text="${ciudad.description}"></td>
+            <td th:text="${ciudad.department.name}"></td>
+            <td>
+                <a th:href="@{'/admin/lugares/ciudad/editar/' + ${ciudad.cityId}}">Editar</a>
+                <a th:href="@{'/admin/lugares/ciudad/eliminar/' + ${ciudad.cityId}}"
+                   onclick="return confirm('¿Estás seguro de eliminar esta ciudad?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

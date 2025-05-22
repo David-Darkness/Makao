@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -22,6 +23,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Email
     @NotBlank
     @Size(min = 5, max = 50)
@@ -35,7 +37,6 @@ public class UserEntity {
     @NotBlank
     @Size(min = 5, max = 50)
     private String lastName;
-
 
     @NotBlank
     @Size(min = 3, max = 50)
@@ -52,7 +53,12 @@ public class UserEntity {
     @Size(min = 3, max = 15)
     private String identificationNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<RoleEntity> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    @Builder.Default
+    private Set<RoleEntity> roles = new HashSet<>();
 }

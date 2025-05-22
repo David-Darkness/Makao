@@ -19,10 +19,11 @@ public class CityEntity {
 
     private String name;
     private String description;
-    private String image;
+
 
     @ManyToOne
     @JoinColumn(name = "department_id")
+    @ToString.Exclude
     private DepartmentEntity department;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)

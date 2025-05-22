@@ -38,7 +38,7 @@
 }
 
 .logo-container img {
-    max-width: 120px;
+    max-width: 200px;
     height: auto;
 }
 
@@ -175,7 +175,7 @@
 
 @media (max-width: 768px) {
     #login-wrapper {
-        padding-top: 180px; /* o el valor que necesites */
+        padding-top: 140px; /* o el valor que necesites */
     }
 }
 

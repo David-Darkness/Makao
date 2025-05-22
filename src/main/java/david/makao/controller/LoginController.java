@@ -19,6 +19,9 @@ public class LoginController {
         return "register";
     }
 
+    /*
+
+     */
     @GetMapping("/navbar")
     public String navbar() {
         return "navbar";

@@ -1,17 +1,15 @@
 package david.makao.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-
 @Table(name = "roles")
 public class RoleEntity {
 
@@ -20,5 +18,12 @@ public class RoleEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private ERole name;
+    @Column(unique = true, nullable = false)
+    private ERole role;
+
+    @ManyToMany(mappedBy = "roles")
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Set<UserEntity> users = new HashSet<>();
 }

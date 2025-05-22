@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="admin/layout :: layout">
+<div th:fragment="content">
+    <h1>Paquetes Turísticos</h1>
+    <a th:href="@{/admin/paquetes/nuevo}">Crear nuevo paquete</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Días</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paquete : ${paquetes}">
+            <td th:text="${paquete.packageId}"></td>
+            <td th:text="${paquete.name}"></td>
+            <td th:text="${paquete.description}"></td>
+            <td th:text="${paquete.price}"></td>
+            <td th:text="${paquete.durationDays}"></td>
+            <td>
+                <a th:href="@{'/admin/paquetes/editar/' + ${paquete.packageId}}">Editar</a>
+                <a th:href="@{'/admin/paquetes/eliminar/' + ${paquete.packageId}}"
+                   onclick="return confirm('¿Estás seguro de eliminar este paquete?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

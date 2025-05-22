@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Ciudad</title>
+</head>
+<body>
+<div th:replace="admin/layout :: layout">
+    <div th:fragment="content">
+        <h2 th:text="${ciudad.cityId == null} ? 'Nueva Ciudad' : 'Editar Ciudad'"></h2>
+
+        <form th:action="@{/admin/lugares/ciudad/guardar}" th:object="${ciudad}" method="post">
+            <input type="hidden" th:field="*{cityId}" />
+
+            <label for="name">Nombre:</label>
+            <input type="text" th:field="*{name}" required />
+
+            <label for="description">Descripción:</label>
+            <textarea th:field="*{description}" required></textarea>
+
+            <label for="departmentId">Departamento:</label>
+            <select name="departmentId" required>
+                <option th:each="dep : ${departamentos}"
+                        th:value="${dep.departmentId}"
+                        th:text="${dep.name}"
+                        th:selected="${ciudad.department != null and ciudad.department.departmentId == dep.departmentId}">
+                </option>
+            </select>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

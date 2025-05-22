@@ -21,5 +21,6 @@ public class DepartmentEntity {
     private String description;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<CityEntity> cities;
 }

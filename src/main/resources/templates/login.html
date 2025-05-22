@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registro</title>
 
+
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
@@ -19,7 +20,7 @@
 <body>
 
 <!-- Aquí insertas el navbar -->
-<div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <!-- Tu contenido original -->
 <div id="login-wrapper">
@@ -27,7 +28,7 @@
         <div class="form-box">
             <h2>Iniciar sesión</h2>
 
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/process_login}" method="post">
                 <div class="input-group">
                     <label for="email">Correo electrónico</label>
                     <input type="email" name="username" id="email" required>
@@ -49,15 +50,19 @@
 
         </div>
 
+
+
         <div class="side-box">
-            <h2>¿Nuevo aquí?</h2>
-            <p>Crea una cuenta para empezar</p>
-            <a th:href="@{/register}">Registrarse</a>
+
 
             <!-- Logo al final -->
             <div class="logo-container">
                 <img th:src="@{/images/makao-logo.png}" alt="Logo Makao">
             </div>
+
+            <h2>¿Nuevo aquí?</h2>
+            <p>Crea una cuenta para empezar</p>
+            <a th:href="@{/register}">Registrarse</a>
 
         </div>
     </div>
