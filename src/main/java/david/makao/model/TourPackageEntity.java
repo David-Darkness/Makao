@@ -22,6 +22,7 @@ public class TourPackageEntity {
     private String description;
     private BigDecimal price;
     private int durationDays;
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "city_id")

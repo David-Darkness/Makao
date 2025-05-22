@@ -12,6 +12,8 @@
             <th>Descripción</th>
             <th>Precio</th>
             <th>Días</th>
+            <th>Ciudad</th> <!-- Nueva columna -->
+            <th>Imagen</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -22,6 +24,16 @@
             <td th:text="${paquete.description}"></td>
             <td th:text="${paquete.price}"></td>
             <td th:text="${paquete.durationDays}"></td>
+            <td th:text="${paquete.city != null ? paquete.city.name : 'Sin ciudad'}"></td> <!-- Ciudad -->
+            <td>
+                <img th:if="${paquete.imagePath != null}"
+                     th:src="@{/images/imagesPaquetes/{filename}(filename=${paquete.imagePath})}"
+                     alt="Imagen del paquete"
+                     width="150"
+                     height="100"
+                     style="object-fit: cover; border-radius: 4px;" />
+                <span th:if="${paquete.imagePath == null}">Sin imagen</span>
+            </td>
             <td>
                 <a th:href="@{'/admin/paquetes/editar/' + ${paquete.packageId}}">Editar</a>
                 <a th:href="@{'/admin/paquetes/eliminar/' + ${paquete.packageId}}"

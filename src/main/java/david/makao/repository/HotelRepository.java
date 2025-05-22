@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends CrudRepository<HotelEntity, Long> {
     List<HotelEntity> findByCity_CityId(Long id);
+    List<HotelEntity> findAllByOrderByStarsDesc();
+    List<HotelEntity> findAllByOrderByNameAsc();
 
     // Hoteles por ciudad
 }

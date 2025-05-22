@@ -21,6 +21,8 @@ public class HotelEntity {
     private String address;
     private String description;
     private String info;
+    private String imagePath;
+    private int stars;
 
     @ManyToOne
     @JoinColumn(name = "city_id")

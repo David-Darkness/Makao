@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="admin/layout :: layout">
+<div th:fragment="content">
+    <h1>Gestión de Hoteles</h1>
+    <a th:href="@{/admin/hoteles/nuevo}">➕ Nuevo Hotel</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Estrellas</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hotel : ${hoteles}">
+            <td>
+                <img th:if="${hotel.imagePath != null}"
+                     th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
+                     alt="Imagen del hotel"
+                     style="max-width: 100px; height: auto;" />
+                <span th:if="${hotel.imagePath == null}">Sin imagen</span>
+            </td>
+            <td th:text="${hotel.name}"></td>
+            <td th:text="${hotel.address}"></td>
+            <td th:text="${hotel.city.name}"></td>
+            <td th:text="${hotel.stars} + ' ★'"></td>
+            <td>
+                <a th:href="@{'/admin/hoteles/editar/' + ${hotel.hotelId}}">✏️ Editar</a>
+                <a th:href="@{'/admin/hoteles/eliminar/' + ${hotel.hotelId}}" onclick="return confirm('¿Eliminar este hotel?')">🗑️ Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

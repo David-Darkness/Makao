@@ -10,4 +10,5 @@ public class MakaoApplication {
         SpringApplication.run(MakaoApplication.class, args);
     }
 
+
 }
