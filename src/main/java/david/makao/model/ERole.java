@@ -4,5 +4,5 @@ public enum ERole {
     ADMIN,
     COLLABORATOR,
     USER,
-    CUSTOMER
+    CUSTOMER,
 }

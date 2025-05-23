@@ -6,5 +6,10 @@ import java.util.List;
 public interface RestaurantService {
     List<RestaurantEntity> getAllRestaurants();
     List<RestaurantEntity> getRestaurantsByCity(Long cityId);
+    RestaurantEntity getRestaurantById(Long id);
+    void saveRestaurant(RestaurantEntity restaurante);
+    void deleteRestaurant(Long id);
+
+
 }
 

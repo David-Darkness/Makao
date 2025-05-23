@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/layout :: adminHead"></head>
+<body>
+<div th:replace="admin/layout :: layout">
+    <div th:fragment="content" style="padding: 20px;">
+        <h2 style="color: #1a3d7c;">Gestión de Restaurantes</h2>
+        <a th:href="@{/admin/restaurantes/nuevo}"
+           style="display: inline-block; margin: 10px 0; background-color: #1a3d7c; color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none;">
+            ➕ Nuevo Restaurante
+        </a>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead style="background-color: #1a3d7c; color: white;">
+            <tr>
+                <th style="padding: 8px;">Imagen</th>
+                <th style="padding: 8px;">Nombre</th>
+                <th style="padding: 8px;">Dirección</th>
+                <th style="padding: 8px;">Ciudad</th>
+                <th style="padding: 8px;">Información</th>
+                <th style="padding: 8px;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="restaurante : ${restaurantes}" style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px;">
+                    <img th:if="${restaurante.imagePath != null}"
+                         th:src="@{/images/imagesRestaurante/{filename}(filename=${restaurante.imagePath})}"
+                         alt="Imagen del restaurante"
+                         style="max-width: 100px; height: auto;" />
+                    <span th:if="${restaurante.imagePath == null}">Sin imagen</span>
+                </td>
+                <td th:text="${restaurante.name}" style="padding: 8px;"></td>
+                <td th:text="${restaurante.address}" style="padding: 8px;"></td>
+                <td th:text="${restaurante.city.name}" style="padding: 8px;"></td>
+                <td th:text="${restaurante.info}" style="padding: 8px;"></td>
+                <td style="padding: 8px;">
+                    <a th:href="@{'/admin/restaurantes/editar/' + ${restaurante.restaurantId}}"
+                       style="margin-right: 8px; text-decoration: none;">✏️ Editar</a>
+                    <a th:href="@{'/admin/restaurantes/eliminar/' + ${restaurante.restaurantId}}"
+                       onclick="return confirm('¿Eliminar este restaurante?')" style="text-decoration: none;">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

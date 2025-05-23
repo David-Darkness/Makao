@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="admin/layout :: layout">
-<div th:fragment="content">
-    <h1>Dashboard</h1>
-    <p>Aquí irán las reservas recientes, estadísticas y resumen general.</p>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/layout :: adminHead"></head>
+<body>
+<div th:replace="admin/layout :: layout">
+    <div th:fragment="content">
+        <h1>Dashboard</h1>
+        <p>Aquí irán las reservas recientes, estadísticas y resumen general.</p>
+    </div>
 </div>
+</body>
 </html>

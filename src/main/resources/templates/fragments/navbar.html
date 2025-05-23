@@ -1,38 +1,35 @@
 <!-- fragments/navbar.html -->
-<div th:fragment="navbar">
+<div th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-md navbar-custom">
         <div class="container">
-            <!-- Contenedor flex solo en pantallas pequeñas para logo y hamburguesa -->
+            <!-- Logo móvil -->
             <div class="d-flex d-md-none justify-content-between align-items-center w-100">
-                <!-- Logo -->
                 <a class="navbar-brand" th:href="@{/home}">
                     <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao">
                 </a>
-                <!-- Botón hamburguesa -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
 
-            <!-- Logo visible en pantallas md+ para mantener posición original -->
+            <!-- Logo escritorio -->
             <a class="navbar-brand d-none d-md-block" th:href="@{/home}">
                 <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao">
             </a>
 
-            <!-- Menú colapsable -->
+            <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicios</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" th:href="@{/paquetes}">Paquetes</a></li>
                             <li><a class="dropdown-item" th:href="@{/hoteles}">Hoteles y Restaurantes</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinos</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Destinos</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" th:href="@{/destinos/huila}">Huila</a></li>
                             <li><a class="dropdown-item" th:href="@{/destinos/meta}">Meta</a></li>
@@ -42,14 +39,38 @@
                     <li class="nav-item"><a class="nav-link" th:href="@{/contacto}">Contacto</a></li>
                 </ul>
 
-                <!-- Botones de sesión e idioma -->
+                <!-- Usuario e idioma -->
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-login" th:href="@{/login}">Iniciar Sesión</a>
-                    <div class="dropdown dropdown-language">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Iniciar sesión -->
+                    <div sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-login" th:href="@{/login}">Iniciar Sesión</a>
+                    </div>
+
+                    <!-- Usuario autenticado -->
+                    <div sec:authorize="isAuthenticated()" class="dropdown">
+                        <a href="#" class="btn btn-profile dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <span th:text="${#authentication.name.length() > 15} ? ${#authentication.name.substring(0, 12)} + '...' : ${#authentication.name}">Usuario</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/perfil}">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" th:href="@{/reservas}">Mis Reservas</a></li> <!-- NUEVO -->
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- Idioma -->
+                    <div class="dropdown dropdown-language ms-2">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             ES
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">ES - Español</a></li>
                             <li><a class="dropdown-item" href="#">EN - English</a></li>
                             <li><a class="dropdown-item" href="#">PT - Português</a></li>
@@ -60,3 +81,4 @@
         </div>
     </nav>
 </div>
+

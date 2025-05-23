@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error - Makao</title>
+    <style>
+        body {
+            background-color: #f5f7fa;
+            color: #c60000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        img.logo {
+            width: 140px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 2px 2px rgba(26, 61, 124, 0.3));
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #3b5998;
+            margin-bottom: 25px;
+        }
+
+        a.home-button {
+            text-decoration: none;
+            background-color: #1a3d7c;
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 6px 12px rgba(26, 61, 124, 0.35);
+            transition: background-color 0.3s ease;
+        }
+
+        a.home-button:hover {
+            background-color: #1450a0;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="/images/makao-logo.png" alt="Makao Logo" class="logo" />
+<h1 th:text="${status}">Error</h1>
+<h2 th:text="${error}">Ocurrió un error inesperado</h2>
+<p th:text="${message}">Por favor, vuelve a intentarlo más tarde.</p>
+<a th:href="@{/home}" class="home-button">Volver al inicio</a>
+</body>
+</html>

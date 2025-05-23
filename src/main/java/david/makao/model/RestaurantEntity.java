@@ -20,6 +20,9 @@ public class RestaurantEntity {
     private String name;
     private String address;
     private String info;
+    @Column(name = "image_path")
+    private String imagePath;
+
 
     @ManyToOne
     @JoinColumn(name = "city_id")

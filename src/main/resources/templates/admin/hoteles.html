@@ -1,38 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="admin/layout :: layout">
-<div th:fragment="content">
-    <h1>Gestión de Hoteles</h1>
-    <a th:href="@{/admin/hoteles/nuevo}">➕ Nuevo Hotel</a>
-    <table>
-        <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Ciudad</th>
-            <th>Estrellas</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="hotel : ${hoteles}">
-            <td>
-                <img th:if="${hotel.imagePath != null}"
-                     th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
-                     alt="Imagen del hotel"
-                     style="max-width: 100px; height: auto;" />
-                <span th:if="${hotel.imagePath == null}">Sin imagen</span>
-            </td>
-            <td th:text="${hotel.name}"></td>
-            <td th:text="${hotel.address}"></td>
-            <td th:text="${hotel.city.name}"></td>
-            <td th:text="${hotel.stars} + ' ★'"></td>
-            <td>
-                <a th:href="@{'/admin/hoteles/editar/' + ${hotel.hotelId}}">✏️ Editar</a>
-                <a th:href="@{'/admin/hoteles/eliminar/' + ${hotel.hotelId}}" onclick="return confirm('¿Eliminar este hotel?')">🗑️ Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/layout :: adminHead"></head>
+<body>
+<div th:replace="admin/layout :: layout">
+    <div th:fragment="content" style="padding: 20px;">
+
+        <h1 style="color: #1a3d7c; margin-bottom: 20px;">Gestión de Hoteles</h1>
+
+        <a th:href="@{/admin/hoteles/nuevo}"
+           style="display: inline-block; margin-bottom: 20px; padding: 10px 16px; background-color: #1a3d7c; color: white; border-radius: 6px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 8px rgba(26, 61, 124, 0.3);">
+            ➕ Nuevo Hotel
+        </a>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+            <tr style="background-color: #f0f4fa; text-align: left;">
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Imagen</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Nombre</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Dirección</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Ciudad</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Estrellas</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="hotel : ${hoteles}" style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;">
+                    <img th:if="${hotel.imagePath != null}"
+                         th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
+                         alt="Imagen del hotel"
+                         style="max-width: 100px; height: auto; border-radius: 4px;" />
+                    <span th:if="${hotel.imagePath == null}">Sin imagen</span>
+                </td>
+                <td th:text="${hotel.name}" style="padding: 10px;"></td>
+                <td th:text="${hotel.address}" style="padding: 10px;"></td>
+                <td th:text="${hotel.city.name}" style="padding: 10px;"></td>
+                <td th:text="${hotel.stars} + ' ★'" style="padding: 10px;"></td>
+                <td style="padding: 10px;">
+                    <a th:href="@{'/admin/hoteles/editar/' + ${hotel.hotelId}}"
+                       style="color: #1450a0; text-decoration: none; font-weight: 600; margin-right: 10px;">
+                        ✏️ Editar
+                    </a>
+                    <a th:href="@{'/admin/hoteles/eliminar/' + ${hotel.hotelId}}"
+                       onclick="return confirm('¿Eliminar este hotel?')"
+                       style="color: crimson; text-decoration: none; font-weight: 600;">
+                        🗑️ Eliminar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
 </div>
+</body>
 </html>
+

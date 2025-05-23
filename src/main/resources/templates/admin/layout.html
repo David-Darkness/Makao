@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="adminHead">
     <meta charset="UTF-8" />
     <title>Admin Panel</title>
-    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/layout.css}" />
 </head>
 <body>
-<div th:fragment="layout"> <!-- 🔧 Fragmento nombrado correctamente -->
+<div th:fragment="layout">
     <div class="admin-container">
         <nav class="sidebar">
-            <h2>Admin</h2>
+            <h2>Makao Admin</h2>
             <ul>
                 <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
                 <li><a th:href="@{/admin/paquetes}">Paquetes</a></li>
@@ -17,13 +17,16 @@
                 <li><a th:href="@{/admin/hoteles}">Hoteles</a></li>
                 <li><a th:href="@{/admin/restaurantes}">Restaurantes</a></li>
                 <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+                <li class="home-link"><a th:href="@{/home}">← Salir del Portal</a></li>
             </ul>
         </nav>
 
         <main class="content">
-            <div th:replace="~{::content}"></div> <!-- Aquí se inyectará el contenido de cada vista -->
+            <div th:replace="~{::content}"></div>
         </main>
     </div>
 </div>
 </body>
 </html>
+
+

@@ -1,9 +1,9 @@
 package david.makao.controller.admin;
 
 import david.makao.model.CityEntity;
-import david.makao.model.HotelEntity;
+import david.makao.model.RestaurantEntity;
 import david.makao.repository.CityRepository;
-import david.makao.repository.HotelRepository;
+import david.makao.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,57 +17,52 @@ import java.util.UUID;
 
 @Controller
 @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
-@RequestMapping("/admin/hoteles")
-public class HotelAdminController {
+@RequestMapping("/admin/restaurantes")
+public class RestaurantAdminController {
 
     @Autowired
-    private HotelRepository hotelRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private CityRepository cityRepository;
 
-    private final Path uploadPath = Paths.get("src/main/resources/static/images/imagesHotel");
+    private final Path uploadPath = Paths.get("src/main/resources/static/images/imagesRestaurante");
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping
-    public String listarHoteles(Model model) {
-        model.addAttribute("hoteles", hotelRepository.findAll());
-        return "admin/hoteles";
+    public String listarRestaurantes(Model model) {
+        model.addAttribute("restaurantes", restaurantRepository.findAll());
+        return "admin/restaurantes";
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/nuevo")
-    public String nuevoHotel(Model model) {
-        model.addAttribute("hotel", new HotelEntity());
+    public String nuevoRestaurante(Model model) {
+        model.addAttribute("restaurante", new RestaurantEntity());
         model.addAttribute("ciudades", cityRepository.findAll());
-        return "admin/hotel-form";
+        return "admin/restaurantes-form";
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @PostMapping("/guardar")
-    public String guardarHotel(
-            @RequestParam(required = false) Long hotelId,
+    public String guardarRestaurante(
+            @RequestParam(required = false) Long restaurantId,
             @RequestParam String name,
             @RequestParam String address,
-            @RequestParam String description,
             @RequestParam String info,
-            @RequestParam int stars,
             @RequestParam Long cityId,
             @RequestParam(value = "imageFile", required = false) MultipartFile imageFile
     ) throws IOException {
 
-        HotelEntity hotel = (hotelId != null)
-                ? hotelRepository.findById(hotelId).orElse(new HotelEntity())
-                : new HotelEntity();
+        RestaurantEntity restaurante = (restaurantId != null)
+                ? restaurantRepository.findById(restaurantId).orElse(new RestaurantEntity())
+                : new RestaurantEntity();
 
-        hotel.setName(name);
-        hotel.setAddress(address);
-        hotel.setDescription(description);
-        hotel.setInfo(info);
-        hotel.setCity(cityRepository.findById(cityId).orElse(null));
-        hotel.setStars(stars);
+        restaurante.setName(name);
+        restaurante.setAddress(address);
+        restaurante.setInfo(info);
+        restaurante.setCity(cityRepository.findById(cityId).orElse(null));
 
-        // Guardar imagen
         if (imageFile != null && !imageFile.isEmpty()) {
             if (imageFile.getSize() > 1_000_000) {
                 throw new IllegalArgumentException("La imagen no puede superar 1 MB.");
@@ -81,33 +76,33 @@ public class HotelAdminController {
             Path filePath = uploadPath.resolve(filename);
             Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            hotel.setImagePath(filename);
-        } else if (hotelId != null) {
-            HotelEntity existente = hotelRepository.findById(hotelId).orElse(null);
+            restaurante.setImagePath(filename);
+        } else if (restaurantId != null) {
+            RestaurantEntity existente = restaurantRepository.findById(restaurantId).orElse(null);
             if (existente != null) {
-                hotel.setImagePath(existente.getImagePath());
+                restaurante.setImagePath(existente.getImagePath());
             }
         }
 
-        hotelRepository.save(hotel);
-        return "redirect:/admin/hoteles";
+        restaurantRepository.save(restaurante);
+        return "redirect:/admin/restaurantes";
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/editar/{id}")
-    public String editarHotel(@PathVariable Long id, Model model) {
-        HotelEntity hotel = hotelRepository.findById(id).orElse(null);
-        if (hotel == null) return "redirect:/admin/hoteles";
+    public String editarRestaurante(@PathVariable Long id, Model model) {
+        RestaurantEntity restaurante = restaurantRepository.findById(id).orElse(null);
+        if (restaurante == null) return "redirect:/admin/restaurantes";
 
-        model.addAttribute("hotel", hotel);
+        model.addAttribute("restaurante", restaurante);
         model.addAttribute("ciudades", cityRepository.findAll());
-        return "admin/hotel-form";
+        return "admin/restaurantes-form";
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/eliminar/{id}")
-    public String eliminarHotel(@PathVariable Long id) {
-        hotelRepository.deleteById(id);
-        return "redirect:/admin/hoteles";
+    public String eliminarRestaurante(@PathVariable Long id) {
+        restaurantRepository.deleteById(id);
+        return "redirect:/admin/restaurantes";
     }
 }

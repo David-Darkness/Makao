@@ -5,11 +5,13 @@ import david.makao.model.DepartmentEntity;
 import david.makao.repository.CityRepository;
 import david.makao.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
 @RequestMapping("/admin/lugares")
 public class PlaceAdminController {
 
@@ -20,6 +22,7 @@ public class PlaceAdminController {
     private CityRepository cityRepository;
 
     // Mostrar ciudades y departamentos
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping
     public String listarLugares(Model model) {
         model.addAttribute("departamentos", departmentRepository.findAll());
@@ -28,18 +31,21 @@ public class PlaceAdminController {
     }
 
     // ---- DEPARTAMENTOS ----
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/departamento/nuevo")
     public String nuevoDepartamento(Model model) {
         model.addAttribute("departamento", new DepartmentEntity());
         return "admin/departamento-form";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @PostMapping("/departamento/guardar")
     public String guardarDepartamento(@ModelAttribute DepartmentEntity departamento) {
         departmentRepository.save(departamento);
         return "redirect:/admin/lugares";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/departamento/editar/{id}")
     public String editarDepartamento(@PathVariable Long id, Model model) {
         DepartmentEntity departamento = departmentRepository.findById(id).orElse(null);
@@ -48,6 +54,7 @@ public class PlaceAdminController {
         return "admin/departamento-form";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/departamento/eliminar/{id}")
     public String eliminarDepartamento(@PathVariable Long id) {
         departmentRepository.deleteById(id);
@@ -55,6 +62,7 @@ public class PlaceAdminController {
     }
 
     // ---- CIUDADES ----
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/ciudad/nuevo")
     public String nuevaCiudad(Model model) {
         model.addAttribute("ciudad", new CityEntity());
@@ -62,6 +70,7 @@ public class PlaceAdminController {
         return "admin/ciudad-form";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @PostMapping("/ciudad/guardar")
     public String guardarCiudad(@ModelAttribute CityEntity ciudad, @RequestParam Long departmentId) {
         DepartmentEntity departamento = departmentRepository.findById(departmentId).orElse(null);
@@ -71,6 +80,7 @@ public class PlaceAdminController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/ciudad/editar/{id}")
     public String editarCiudad(@PathVariable Long id, Model model) {
         CityEntity ciudad = cityRepository.findById(id).orElse(null);
@@ -80,6 +90,7 @@ public class PlaceAdminController {
         return "admin/ciudad-form";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/ciudad/eliminar/{id}")
     public String eliminarCiudad(@PathVariable Long id) {
         cityRepository.deleteById(id);

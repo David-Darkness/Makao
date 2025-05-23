@@ -27,5 +27,22 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<RestaurantEntity> getRestaurantsByCity(Long cityId) {
         return restaurantRepository.findByCity_CityId(cityId);
     }
+    @Override
+    public RestaurantEntity getRestaurantById(Long id) {
+        return restaurantRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveRestaurant(RestaurantEntity restaurante) {
+        restaurantRepository.save(restaurante);
+    }
+
+    @Override
+    public void deleteRestaurant(Long id) {
+        restaurantRepository.deleteById(id);
+    }
+
+
+
 }
 

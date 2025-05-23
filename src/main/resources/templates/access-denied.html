@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Acceso Denegado - Makao</title>
+    <style>
+        body {
+            background-color: #f5f7fa;
+            color: #c60000; /* azul fuerte, buen contraste */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        img.logo {
+            width: 140px;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 2px 2px rgba(26, 61, 124, 0.3));
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 4px rgba(26, 61, 124, 0.2);
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 35px;
+            color: #3b5998; /* azul medio para texto secundario */
+            max-width: 400px;
+            line-height: 1.5;
+        }
+
+        a.home-button {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #1a3d7c; /* azul fuerte */
+            color: #f5f7fa;
+            padding: 14px 40px;
+            font-weight: 600;
+            border-radius: 35px;
+            box-shadow: 0 6px 12px rgba(26, 61, 124, 0.35);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border: none;
+            user-select: none;
+        }
+
+        a.home-button:hover {
+            background-color: #1450a0;
+            box-shadow: 0 8px 16px rgba(20, 80, 160, 0.5);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                max-width: 90%;
+            }
+
+            a.home-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="/images/makao-logo.png" alt="Makao Logo" class="logo" />
+<h1>Acceso Denegado</h1>
+<p>No tienes permisos para acceder a esta página.</p>
+<a th:href="@{/admin}" class="home-button">Volver al inicio</a>
+</body>
+</html>
