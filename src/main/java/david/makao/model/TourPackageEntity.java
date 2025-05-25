@@ -19,6 +19,7 @@ public class TourPackageEntity {
     private Long packageId;
 
     private String name;
+    @Column(length = 10000)
     private String description;
     private BigDecimal price;
     private int durationDays;

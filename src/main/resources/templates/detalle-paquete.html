@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${paquete.name}">Detalle del Paquete</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Contenido principal -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <img th:if="${paquete.imagePath != null}"
+                 th:src="@{/images/imagesPaquetes/{filename}(filename=${paquete.imagePath})}"
+                 class="img-fluid rounded shadow"
+                 alt="Imagen del paquete">
+            <div th:if="${paquete.imagePath == null}" class="text-muted fst-italic">
+                Sin imagen disponible
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h1 class="mb-3 fw-bold" th:text="${paquete.name}">Nombre del Paquete</h1>
+            <p><strong>Descripción:</strong></p>
+            <p th:text="${paquete.description}">Descripción completa...</p>
+
+            <p><strong>Precio:</strong>
+                <span th:text="${#numbers.formatDecimal(paquete.price, 1, 'COMMA', 2, 'POINT')} + ' COP'"></span></p>
+
+            <p><strong>Duración:</strong>
+                <span th:text="${paquete.durationDays} + ' días'">0 días</span></p>
+
+            <p><strong>Ciudad:</strong>
+                <span th:text="${paquete.city.name}">Ciudad</span></p>
+
+            <!-- Botones de acción -->
+            <div class="mt-4 d-flex flex-wrap gap-3">
+                <a th:href="@{'/comprar/' + ${paquete.packageId}}" class="btn btn-success btn-lg">
+                    <i class="bi bi-cart"></i> Comprar ahora
+                </a>
+                <a th:href="@{/home}" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-arrow-left"></i> Volver al inicio
+                </a>
+                <a th:href="@{/paquetes}" class="btn btn-success btn-lg">
+                    <i class="bi bi-arrow-right"></i> Paquetes
+                </a>
+                <a th:href="@{/hoteles-restaurantes}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-building"></i> Hoteles y Restaurantes
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer futuro -->
+<!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
+
+<!-- Bootstrap JS + Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

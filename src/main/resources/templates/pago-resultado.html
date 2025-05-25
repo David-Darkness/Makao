@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Pago | Makao Travel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --makao-primary: #2c3e50;
+            --makao-secondary: #3498db;
+            --makao-success: #27ae60;
+            --makao-danger: #e74c3c;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            max-height: 80px;
+        }
+
+        .payment-header {
+            text-align: center;
+            color: var(--makao-primary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .payment-result {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .approved {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-left: 5px solid var(--makao-success);
+        }
+
+        .rejected {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 5px solid var(--makao-danger);
+        }
+
+        .amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--makao-primary);
+        }
+
+        .btn-makao {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-makao-success {
+            background-color: var(--makao-success);
+            border-color: var(--makao-success);
+        }
+
+        .btn-makao-danger {
+            background-color: var(--makao-danger);
+            border-color: var(--makao-danger);
+        }
+
+        .btn-makao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <div class="payment-container">
+        <div class="logo-container">
+            <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao Travel" class="img-fluid">
+        </div>
+
+        <h1 class="payment-header">Resultado de tu Transacción</h1>
+
+        <div th:if="${aprobado}" class="payment-result approved">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+            <h2 class="mt-3">¡Pago Aprobado!</h2>
+            <p class="lead">Tu transacción se ha completado exitosamente</p>
+            <p class="amount">Monto: <span th:text="${'$' + #numbers.formatDecimal(amount, 1, 2, 'COMMA')}"></span></p>
+
+            <form th:action="@{/comprar/confirmar-pago}" method="post" class="mt-4">
+                <!-- Campos ocultos con los datos requeridos -->
+                <input type="hidden" name="tourPackageId" th:value="${tourPackageId}">
+                <input type="hidden" name="hotelId" th:value="${hotelId}">
+                <input type="hidden" name="restaurantId" th:value="${restaurantId}">
+                <input type="hidden" name="startDate" th:value="${startDate}">
+                <input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}">
+                <input type="hidden" name="totalPrice" th:value="${totalPrice}">
+
+                <button type="submit" class="btn btn-makao btn-makao-success btn-lg">
+                    <i class="bi bi-check-circle"></i> Mostrar comprobante
+                </button>
+            </form>
+        </div>
+
+        <div th:unless="${aprobado}" class="payment-result rejected">
+            <i class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;"></i>
+            <h2 class="mt-3">Pago Rechazado</h2>
+            <p class="lead">No pudimos procesar tu pago. Por favor intenta con otro método.</p>
+
+            <button onclick="window.history.back()" class="btn btn-makao btn-makao-danger btn-lg mt-3">
+                <i class="bi bi-arrow-left"></i> Volver al Formulario
+            </button>
+        </div>
+
+        <div class="text-center mt-4 text-muted">
+            <small>¿Necesitas ayuda? Contáctanos a <a href="mailto:soporte@makaotravel.com">soporte@makaotravel.com</a></small>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

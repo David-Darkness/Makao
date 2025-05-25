@@ -63,6 +63,8 @@
             <version>1.18.38</version> <!-- Última versión estable -->
             <scope>provided</scope>
         </dependency>
+        <!-- Agrega esto en tu pom.xml -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>

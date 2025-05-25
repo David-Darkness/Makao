@@ -20,6 +20,7 @@ public class HotelEntity {
     private String name;
     private String address;
     private String description;
+    @Column(length = 10000)
     private String info;
     private String imagePath;
     private int stars;

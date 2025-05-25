@@ -6,3 +6,41 @@
         height: 300px !important;
     }
 }
+
+
+.aliados-slider {
+    background-color: #f0f0f0; /* azul suave que mencionaste antes */
+    overflow: hidden;
+    width: 99vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 25px 0;
+}
+
+.aliados-track {
+    display: flex;
+    gap: 2rem;
+    animation: scrollAliados 40s linear infinite;
+    align-items: center;
+}
+
+.aliados-img {
+    height: 80px;
+    object-fit: contain;
+}
+
+.aliados-img:hover {
+    filter: grayscale(0%);
+}
+
+@keyframes scrollAliados {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

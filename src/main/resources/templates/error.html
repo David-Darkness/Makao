@@ -68,6 +68,6 @@
 <h1 th:text="${status}">Error</h1>
 <h2 th:text="${error}">Ocurrió un error inesperado</h2>
 <p th:text="${message}">Por favor, vuelve a intentarlo más tarde.</p>
-<a th:href="@{/home}" class="home-button">Volver al inicio</a>
+<a href="#" onclick="window.history.back(); return false;" class="home-button">Volver</a>
 </body>
 </html>

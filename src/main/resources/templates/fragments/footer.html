@@ -1,0 +1,167 @@
+<!-- fragments/footer.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer"
+        style="
+        background-color: #f0f7ff;
+        color: #333333;
+        padding: 20px 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-top: 1px solid #d0e0f0;
+      ">
+    <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        text-align: left;
+      ">
+
+        <!-- Logo y descripción -->
+        <div style="
+          flex: 1 1 300px;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        ">
+            <img th:src="@{/images/makao-logo.png}" alt="Logo Makao" style="height: 80px; margin-bottom: 10px;" />
+            <p style="
+            max-width: 320px;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #0066cc;
+            font-style: italic;
+            font-weight: 600;
+            margin: 0;
+          ">
+                Makao es tu mejor aliado para descubrir los destinos turísticos más increíbles.<br/>
+                ¡Explora con nosotros y vive experiencias únicas!
+            </p>
+        </div>
+
+        <!-- Enlaces rápidos -->
+        <div style="
+          flex: 1 1 200px;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        ">
+            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;">Enlaces rápidos</h4>
+            <ul style="
+            list-style: none;
+            padding: 0;
+            line-height: 1.8;
+            font-weight: 600;
+            margin: 0;
+          ">
+                <li style="margin: 8px 0;">
+                    <a href="/" style="color: #0066cc; text-decoration: none;">
+                        <i class="fas fa-home" style="margin-right: 8px; color: #004080;"></i>Inicio
+                    </a>
+                </li>
+                <li style="margin: 8px 0;">
+                    <a href="/paquetes" style="color: #0066cc; text-decoration: none;">
+                        <i class="fas fa-suitcase-rolling" style="margin-right: 8px; color: #004080;"></i>Paquetes
+                    </a>
+                </li>
+                <li style="margin: 8px 0;">
+                    <a href="/hoteles-restaurantes" style="color: #0066cc; text-decoration: none;">
+                        <i class="fas fa-bed" style="margin-right: 8px; color: #004080;"></i>Hoteles & Restaurantes
+                    </a>
+                </li>
+                <li style="margin: 8px 0;">
+                    <a href="/contacto" style="color: #0066cc; text-decoration: none;">
+                        <i class="fas fa-envelope" style="margin-right: 8px; color: #004080;"></i>Contacto
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div style="
+          flex: 1 1 250px;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          font-weight: 600;
+          color: #0066cc;
+        ">
+            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;">Contacto</h4>
+            <p style="margin: 3px 0;">
+                <i class="fas fa-envelope" style="margin-right: 8px; color: #004080;"></i>
+                contacto@makao.com
+            </p>
+            <p style="margin: 3px 0;">
+                <i class="fas fa-phone" style="margin-right: 8px; color: #004080;"></i>
+                +57 300 123 4567
+            </p>
+            <p style="margin: 3px 0;">
+                <i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #004080;"></i>
+                Calle Falsa 123, Ciudad Makao
+            </p>
+        </div>
+
+    </div>
+    <div style="
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #6699cc;
+        font-weight: 500;
+      ">
+        &copy; 2025 Makao. Todos los derechos reservados.
+    </div>
+
+    <style>
+        /* Responsive: centrar y apilar columnas en móviles, menos padding */
+        @media (max-width: 768px) {
+            footer {
+                padding: 12px 8px !important;
+            }
+            footer div[style*="display: flex"] {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            footer div[style*="flex: 1 1"] {
+                max-width: 100% !important;
+                margin-bottom: 12px !important;
+                padding: 0 !important;
+            }
+            footer div[style*="margin-top: 20px"] {
+                margin-top: 8px !important;
+                font-size: 13px !important;
+            }
+            footer img {
+                height: 65px !important;
+                margin-bottom: 6px !important;
+            }
+            footer p {
+                font-size: 0.9rem !important;
+            }
+            footer h4 {
+                margin-bottom: 10px !important;
+                font-size: 1.05rem !important;
+            }
+            footer ul li {
+                margin: 6px 0 !important;
+            }
+        }
+
+        /* Efecto hover para enlaces */
+        footer a:hover {
+            color: #004080 !important;
+            text-decoration: underline;
+        }
+    </style>
+</footer>
+</body>
+</html>

@@ -3,6 +3,7 @@ package david.makao.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -20,6 +21,10 @@ public class ReservationEntity {
     private LocalDate reservationDate;
     private LocalDate startDate;
     private LocalDate endDate;
+    @Column(nullable = false)
+    private int numberOfPeople;
+    private BigDecimal TotalPrice;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")

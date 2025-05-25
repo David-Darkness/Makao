@@ -53,9 +53,10 @@ public class SecurityConfig {
                                 "/process_login",
                                 "/register",
                                 "/home",
-                                "/navbar"
+                                "/navbar",
+                                "/paquetes"
                         ).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")

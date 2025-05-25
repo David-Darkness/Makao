@@ -1,7 +1,11 @@
 package david.makao.controller;
 
+import ch.qos.logback.core.model.Model;
+import david.makao.model.TourPackageEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -14,14 +18,7 @@ public class LoginController {
         return "login"; // busca login.html en /templates
     }
 
-    @GetMapping("/register")
-    public String showRegisterPage() {
-        return "register";
-    }
 
-    /*
-
-     */
     @GetMapping("/navbar")
     public String navbar() {
         return "navbar";
@@ -29,10 +26,7 @@ public class LoginController {
 
 
 
-    // Página de inicio después de login
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
+
+
 }
 

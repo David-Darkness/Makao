@@ -3,9 +3,55 @@
 <head th:replace="admin/layout :: adminHead"></head>
 <body>
 <div th:replace="admin/layout :: layout">
-    <div th:fragment="content">
-        <h1>Dashboard</h1>
-        <p>Aquí irán las reservas recientes, estadísticas y resumen general.</p>
+    <div th:fragment="content" style="padding: 20px;">
+        <h1 style="margin-bottom: 20px; color: #1a3d7c;">Reservas</h1>
+
+        <!-- Mensaje si la lista está vacía -->
+        <div th:if="${#lists.isEmpty(reservas)}"
+             style="padding: 15px; background-color: #ffdddd; color: #a10000; border: 1px solid #a10000; margin-bottom: 20px; border-radius: 5px;">
+            No hay reservas registradas.
+        </div>
+
+        <!-- Tabla solo si hay elementos -->
+        <table th:if="${!#lists.isEmpty(reservas)}"
+               style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <thead style="background-color: #1a3d7c; color: white;">
+            <tr>
+                <th style="padding: 10px;">ID</th>
+                <th style="padding: 10px;">Usuario</th>
+                <th style="padding: 10px;">Paquete</th>
+                <th style="padding: 10px;">Hotel</th>
+                <th style="padding: 10px;">Restaurante</th>
+                <th style="padding: 10px;">Fecha Reserva</th>
+                <th style="padding: 10px;">Inicio</th>
+                <th style="padding: 10px;">Fin</th>
+                <th style="padding: 10px;">Personas</th>
+                <th style="padding: 10px;">Total</th>
+                <th style="padding: 10px; text-align: center;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${reservas}" style="border-bottom: 1px solid #ddd;">
+                <td th:text="${r.reservationId}" style="padding: 10px;"></td>
+                <td th:text="${r.user.username}" style="padding: 10px;"></td>
+                <td th:text="${r.tourPackage.name}" style="padding: 10px;"></td>
+                <td th:text="${r.hotel.name}" style="padding: 10px;"></td>
+                <td th:text="${r.restaurant.name}" style="padding: 10px;"></td>
+                <td th:text="${r.reservationDate}" style="padding: 10px;"></td>
+                <td th:text="${r.startDate}" style="padding: 10px;"></td>
+                <td th:text="${r.endDate}" style="padding: 10px;"></td>
+                <td th:text="${r.numberOfPeople}" style="padding: 10px;"></td>
+                <td th:text="${#numbers.formatDecimal(r.totalPrice, 1, 'COMMA', 2, 'POINT')} + ' COP'" style="padding: 10px;"></td>
+                <td style="padding: 10px; text-align: center;">
+                  <!--  <a th:href="@{'/admin/editar/' + ${r.reservationId}}" style="color: #1a3d7c; font-weight:
+                  600;
+                  text-decoration: none; margin-right: 8px;">Editar</a> -->
+                    <a th:href="@{'/admin/eliminar/' + ${r.reservationId}}" style="color: #c60000; font-weight: 600;
+                     text-decoration: none;" onclick="return confirm('¿Estás seguro de eliminar esta reserva?')">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

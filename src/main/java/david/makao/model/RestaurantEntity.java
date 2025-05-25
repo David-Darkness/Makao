@@ -19,6 +19,7 @@ public class RestaurantEntity {
 
     private String name;
     private String address;
+    @Column(length = 10000)
     private String info;
     @Column(name = "image_path")
     private String imagePath;

@@ -10,5 +10,8 @@ import java.util.List;
 @Repository
 public interface CityRepository extends CrudRepository<CityEntity, Long> {
     List<CityEntity> findByDepartment(DepartmentEntity department);   // Ciudades por departamento
+    List<CityEntity> findByDepartment_DepartmentId(Long departmentId);
+
+
 }
 
