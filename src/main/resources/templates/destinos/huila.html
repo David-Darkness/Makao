@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Descubre el Huila</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/paquetes.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .image-float {
+            float: left;
+            margin: 0 20px 20px 0;
+            max-width: 50%;
+            height: auto;
+        }
+        .text-content {
+            text-align: justify;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .btn-container {
+            clear: both;
+            padding-top: 20px;
+            text-align: center;
+        }
+        @media (max-width: 767.98px) {
+            .image-float {
+                float: none;
+                margin: 0 auto 20px;
+                max-width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5 clearfix">
+    <h1 class="text-center mb-4">Huila: Un destino turístico imperdible</h1>
+
+    <img th:src="@{/images/imagesDestinos/Huila.jpg}" alt="Imagen del Huila" class="img-fluid rounded shadow image-float">
+
+    <div class="text-content">
+        <p class="fs-5">
+            El departamento del <strong>Huila</strong>, situado en el corazón del sur colombiano, es un lugar donde la historia, la naturaleza y la cultura se fusionan para ofrecer experiencias turísticas únicas. Su capital, <strong>Neiva</strong>, es reconocida por su hospitalidad, su folclor y la alegría de sus habitantes.
+        </p>
+        <p class="fs-5">
+            El Huila alberga el <strong>Parque Arqueológico de San Agustín</strong>, declarado Patrimonio de la Humanidad por la UNESCO, un testimonio en piedra de las antiguas civilizaciones indígenas que habitaron la región. Además, el departamento cuenta con el <strong>Desierto de la Tatacoa</strong>, un ecosistema semiárido ideal para la observación astronómica y el ecoturismo, gracias a sus cielos despejados y paisajes únicos.
+        </p>
+        <p class="fs-5">
+            Entre sus riquezas naturales destaca el <strong>Río Magdalena</strong>, el más importante de Colombia, que atraviesa el departamento y permite actividades como rafting, navegación, pesca deportiva y recorridos ecológicos. Por otro lado, el <strong>Volcán Nevado del Huila</strong>, el más alto de Colombia, brinda paisajes imponentes y oportunidades para el senderismo y el turismo de aventura.
+        </p>
+        <p class="fs-5">
+            El Huila también se distingue por su <strong>riqueza cultural y gastronómica</strong>. Las festividades como el <strong>Festival del Bambuco</strong> y las celebraciones religiosas reflejan el arraigo de sus tradiciones. En la gastronomía, sobresalen platos típicos como el asado huilense, el tamal y las achiras, acompañados de uno de los mejores cafés del país, cultivado en las zonas altas del departamento.
+        </p>
+        <p class="fs-5">
+            Apostar por el turismo en el Huila es invertir en el desarrollo local. La actividad turística impulsa la <strong>economía regional</strong>, generando empleo directo e indirecto en comunidades rurales y urbanas. Fortalece los sectores de transporte, hospedaje, artesanía y agroindustria, promoviendo el crecimiento sostenible y la conservación del patrimonio cultural y ambiental.
+        </p>
+        <p class="fs-5">
+            En un mundo donde el turismo responsable gana cada vez más relevancia, el Huila se posiciona como un ejemplo de cómo el turismo puede ser motor de progreso, inclusión y sostenibilidad. Descubrir el Huila es apoyar a sus comunidades y conservar su invaluable legado.
+        </p>
+    </div>
+
+    <div class="mt-4 mb-5">
+        <a th:href="@{/paquetes}" class="btn btn-success btn-lg rounded-pill">
+            Explorar paquetes turísticos <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

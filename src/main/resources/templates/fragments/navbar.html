@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Logo móvil -->
             <div class="d-flex d-md-none justify-content-between align-items-center w-100">
-                <a class="navbar-brand" th:href="@{/home}">
+                <a class="navbar-brand" th:href="@{/templates/user}">
                     <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -13,14 +13,14 @@
             </div>
 
             <!-- Logo escritorio -->
-            <a class="navbar-brand d-none d-md-block" th:href="@{/home}">
+            <a class="navbar-brand d-none d-md-block" th:href="@{/templates/user}">
                 <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao">
             </a>
 
             <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/templates/user}">Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicios</a>
                         <ul class="dropdown-menu">
@@ -69,12 +69,13 @@
                     <!-- Idioma -->
                     <div class="dropdown dropdown-language ms-2">
                         <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            ES
+                            <span th:text="${#locale.language.toUpperCase()}">ES</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">ES - Español</a></li>
-                            <li><a class="dropdown-item" href="#">EN - English</a></li>
-                            <li><a class="dropdown-item" href="#">PT - Português</a></li>
+                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='es')}">ES - Español</a></li>
+                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='en')}">EN - English</a></li>
+                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='fr')}">FR - French</a></li>
+                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='de')}">DE - German</a></li>
                         </ul>
                     </div>
                 </div>

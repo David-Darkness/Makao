@@ -39,7 +39,24 @@ public class HomeController {
         return "detalle-paquete";
     }
 
+    @GetMapping("/destinos/huila")
+    public String huila() {
+        return "destinos/huila";
+    }
 
+    @GetMapping("/destinos/meta")
+    public String meta() {
+        return "destinos/meta";
+    }
 
+    @GetMapping("/nosotros")
+    public String nosotros() {
+        return "nosotros";
+    }
+
+    @GetMapping("/contacto")
+    public String contacto() {
+        return "contacto";
+    }
 }
 

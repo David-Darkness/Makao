@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Descubre el Meta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/paquetes.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .image-float {
+            float: left;
+            margin: 0 20px 20px 0;
+            max-width: 50%;
+            height: auto;
+        }
+        .text-content {
+            text-align: justify;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .btn-container {
+            clear: both;
+            padding-top: 20px;
+            text-align: center;
+        }
+        @media (max-width: 767.98px) {
+            .image-float {
+                float: none;
+                margin: 0 auto 20px;
+                max-width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5 clearfix">
+    <h1 class="text-center mb-4">Meta: Un paraíso natural y cultural</h1>
+
+    <img th:src="@{/images/imagesDestinos/Meta.jpg}" alt="Imagen del Meta" class="img-fluid rounded shadow image-float">
+
+    <div class="text-content">
+        <p class="fs-5">
+            El departamento del <strong>Meta</strong>, ubicado en la región de la Orinoquía colombiana, es un territorio de contrastes donde convergen llanuras infinitas, ríos caudalosos y una riqueza cultural única. Su capital, <strong>Villavicencio</strong>, conocida como la "Puerta al Llano", es el epicentro de la cultura llanera y su famoso joropo.
+        </p>
+        <p class="fs-5">
+            El Meta alberga maravillas naturales como el <strong>Parque Nacional Natural Sierra de la Macarena</strong>, hogar del impresionante Caño Cristales, llamado "el río de los cinco colores" o "el arcoíris que se derritió". Este fenómeno natural único en el mundo se produce por la presencia de plantas acuáticas que pintan el río de vibrantes tonos durante ciertas épocas del año.
+        </p>
+        <p class="fs-5">
+            La <strong>Altillanura</strong> del Meta ofrece paisajes infinitos de sabanas naturales, ideales para el avistamiento de fauna silvestre y experiencias ecoturísticas. La región es cruzada por importantes ríos como el Meta, el Guaviare y el Ariari, que son vitales para la biodiversidad y ofrecen oportunidades para actividades acuáticas y pesca deportiva.
+        </p>
+        <p class="fs-5">
+            El Meta se distingue por su <strong>cultura llanera</strong>, expresada en su música, danzas, tradiciones y gastronomía. Eventos como el <strong>Torneo Internacional del Joropo</strong> y el Festival de la Canción Llanera "Coleo de Oro" atraen visitantes de todo el país. Sus platos típicos como la mamona (carne a la llanera), la hayaca y el pan de arroz son emblemáticos de la región.
+        </p>
+        <p class="fs-5">
+            El turismo en el Meta representa una importante fuente de desarrollo económico sostenible para la región. La actividad turística promueve la conservación de ecosistemas estratégicos, genera empleo local y fortalece las tradiciones culturales. Proyectos de turismo comunitario permiten a los visitantes vivir experiencias auténticas mientras benefician directamente a las poblaciones locales.
+        </p>
+        <p class="fs-5">
+            Con una oferta que combina naturaleza exuberante, cultura vibrante y aventura, el Meta se consolida como uno de los destinos más atractivos de Colombia. Visitar esta región es adentrarse en la esencia del llano y descubrir paisajes que parecen sacados de un sueño.
+        </p>
+    </div>
+
+    <div class="mt-4 mb-5">
+        <a th:href="@{/paquetes}" class="btn btn-success btn-lg rounded-pill">
+            Explorar paquetes turísticos <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

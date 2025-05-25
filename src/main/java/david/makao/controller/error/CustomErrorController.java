@@ -1,5 +1,5 @@
 // src/main/java/david/makao/controller/CustomErrorController.java
-package david.makao.controller;
+package david.makao.controller.error;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
