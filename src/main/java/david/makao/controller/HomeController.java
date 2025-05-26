@@ -24,6 +24,7 @@ public class HomeController {
 
     private final TourPackageService tourPackageService;
 
+
     /**
      * Constructor para inyectar el servicio de paquetes turísticos.
      *
@@ -32,6 +33,16 @@ public class HomeController {
     public HomeController(TourPackageService tourPackageService) {
         this.tourPackageService = tourPackageService;
     }
+
+
+    /*
+        Muestra el home por defecto
+     */
+    @GetMapping("")
+    public String home() {
+        return "home";
+    }
+
 
     /**
      * Muestra la página principal del sitio.

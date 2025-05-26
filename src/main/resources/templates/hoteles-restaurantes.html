@@ -20,8 +20,8 @@
     <h1 class="text-center" th:text="#{hoteles.header}">Hoteles y Restaurantes</h1>
 
     <!-- Filtro por ciudad -->
-    <form method="get" action="#" class="row my-4">
-        <div class="col-md-10">
+    <form method="get" action="/hoteles-restaurantes" class="row my-4">
+    <div class="col-md-10">
             <label th:text="#{hoteles.filter.city}">Ciudad</label>
             <select class="form-control" name="cityId">
                 <option value="" th:text="#{hoteles.filter.allcities}">Todas las ciudades</option>

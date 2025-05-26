@@ -52,9 +52,10 @@
                 <a th:href="@{/paquetes}" class="btn btn-success btn-lg">
                     <i class="bi bi-arrow-right"></i> <span th:text="#{detalle.button.packages}">Paquetes</span>
                 </a>
-                <a th:href="@{/hoteles-restaurantes}" class="btn btn-primary btn-lg">
-                    <i class="bi bi-building"></i> <span th:text="#{detalle.button.hotels}">Hoteles y Restaurantes</span>
+                <a th:href="@{'/hoteles-restaurantes?cityId=' + ${paquete.city.cityId}}" class="btn btn-primary btn-lg">
+                <i class="bi bi-building"></i> <span th:text="#{detalle.button.hotels}">Hoteles y Restaurantes</span>
                 </a>
+
             </div>
         </div>
     </div>
