@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px;">
 
-        <h1 style="color: #1a3d7c; margin-bottom: 20px;">Gestión de Hoteles</h1>
+        <h1 style="color: #1a3d7c; margin-bottom: 20px;" th:text="#{hoteles2.title}">Gestión de Hoteles</h1>
 
         <a th:href="@{/admin/hoteles/nuevo}"
            style="display: inline-block; margin-bottom: 20px; padding: 10px 16px; background-color: #1a3d7c; color: white; border-radius: 6px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 8px rgba(26, 61, 124, 0.3);">
-            ➕ Nuevo Hotel
+            <span th:text="#{hoteles.button.new}">➕ Nuevo Hotel</span>
         </a>
 
         <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
             <thead>
             <tr style="background-color: #f0f4fa; text-align: left;">
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Imagen</th>
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Nombre</th>
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Dirección</th>
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Ciudad</th>
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Estrellas</th>
-                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Acciones</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.image}">Imagen</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.name}">Nombre</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.address}">Dirección</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.city}">Ciudad</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.stars}">Estrellas</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ccc;" th:text="#{hoteles.table.header.actions}">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -28,9 +30,9 @@
                 <td style="padding: 10px;">
                     <img th:if="${hotel.imagePath != null}"
                          th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
-                         alt="Imagen del hotel"
+                         th:alt="#{hoteles.table.header.image}"
                          style="max-width: 100px; height: auto; border-radius: 4px;" />
-                    <span th:if="${hotel.imagePath == null}">Sin imagen</span>
+                    <span th:if="${hotel.imagePath == null}" th:text="#{hoteles.table.noimage}">Sin imagen</span>
                 </td>
                 <td th:text="${hotel.name}" style="padding: 10px;"></td>
                 <td th:text="${hotel.address}" style="padding: 10px;"></td>
@@ -38,14 +40,12 @@
                 <td th:text="${hotel.stars} + ' ★'" style="padding: 10px;"></td>
                 <td style="padding: 10px;">
                     <a th:href="@{'/admin/hoteles/editar/' + ${hotel.hotelId}}"
-                       style="color: #1450a0; text-decoration: none; font-weight: 600; margin-right: 10px;">
-                        ✏️ Editar
-                    </a>
+                       style="color: #1450a0; text-decoration: none; font-weight: 600; margin-right: 10px;"
+                       th:text="#{hoteles.action.edit}">✏️ Editar</a>
                     <a th:href="@{'/admin/hoteles/eliminar/' + ${hotel.hotelId}}"
-                       onclick="return confirm('¿Eliminar este hotel?')"
-                       style="color: crimson; text-decoration: none; font-weight: 600;">
-                        🗑️ Eliminar
-                    </a>
+                       th:onclick="'return confirm(\'' + #{hoteles.delete.confirm} + '\')'"
+                       style="color: crimson; text-decoration: none; font-weight: 600;"
+                       th:text="#{hoteles.action.delete}">🗑️ Eliminar</a>
                 </td>
             </tr>
             </tbody>
@@ -55,4 +55,3 @@
 </div>
 </body>
 </html>
-

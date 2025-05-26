@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px; max-width: 700px; margin: 0 auto;">
 
-        <h2 th:text="${usuario.id == null} ? 'Nuevo Usuario' : 'Editar Usuario'"
+        <h2 th:text="${usuario.id == null} ? #{usuario.form.title.new} : #{usuario.form.title.edit}"
             style="color: #1a3d7c; margin-bottom: 20px;"></h2>
 
         <form th:action="@{/admin/usuarios/guardar}" th:object="${usuario}" method="post"
@@ -13,37 +15,37 @@
 
             <input type="hidden" th:field="*{id}" />
 
-            <label for="email" style="font-weight: 600;">Correo:</label>
+            <label for="email" style="font-weight: 600;" th:text="#{usuario.form.label.email}">Correo:</label>
             <input type="email" th:field="*{email}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="name" style="font-weight: 600;">Nombre:</label>
+            <label for="name" style="font-weight: 600;" th:text="#{usuario.form.label.name}">Nombre:</label>
             <input type="text" th:field="*{name}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="lastName" style="font-weight: 600;">Apellido:</label>
+            <label for="lastName" style="font-weight: 600;" th:text="#{usuario.form.label.lastname}">Apellido:</label>
             <input type="text" th:field="*{lastName}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="username" style="font-weight: 600;">Nombre de usuario:</label>
+            <label for="username" style="font-weight: 600;" th:text="#{usuario.form.label.username}">Nombre de usuario:</label>
             <input type="text" th:field="*{username}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
             <div th:if="${usuario.id == null}">
-                <label for="password" style="font-weight: 600;">Contraseña:</label>
+                <label for="password" style="font-weight: 600;" th:text="#{usuario.form.label.password}">Contraseña:</label>
                 <input type="password" th:field="*{password}" required
                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
             </div>
 
-            <label for="phone" style="font-weight: 600;">Teléfono:</label>
+            <label for="phone" style="font-weight: 600;" th:text="#{usuario.form.label.phone}">Teléfono:</label>
             <input type="text" th:field="*{phone}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="identificationNumber" style="font-weight: 600;">Número de identificación:</label>
+            <label for="identificationNumber" style="font-weight: 600;" th:text="#{usuario.form.label.identification}">Número de identificación:</label>
             <input type="text" th:field="*{identificationNumber}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="roles" style="font-weight: 600;">Roles:</label>
+            <label for="roles" style="font-weight: 600;" th:text="#{usuario.form.label.roles}">Roles:</label>
             <select th:field="*{roles}" multiple size="4"
                     style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                 <option th:each="rol : ${rolesDisponibles}"
@@ -54,7 +56,7 @@
 
             <button type="submit"
                     style="padding: 10px 16px; background-color: #1a3d7c; color: white; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; box-shadow: 0 4px 8px rgba(26, 61, 124, 0.3);">
-                Guardar
+                <span th:text="#{usuario.form.button.save}">Guardar</span>
             </button>
         </form>
 

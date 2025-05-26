@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${paquete.name}">Detalle del Paquete</title>
+    <title th:text="${paquete.name} + ' - ' + #{detalle.title}">Detalle del Paquete</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
-
 </head>
 <body>
 
@@ -22,41 +21,40 @@
                  th:src="@{/images/imagesPaquetes/{filename}(filename=${paquete.imagePath})}"
                  class="img-fluid rounded shadow"
                  alt="Imagen del paquete">
-            <div th:if="${paquete.imagePath == null}" class="text-muted fst-italic">
+            <div th:if="${paquete.imagePath == null}" class="text-muted fst-italic" th:text="#{detalle.noimage}">
                 Sin imagen disponible
             </div>
         </div>
 
         <div class="col-md-6">
             <h1 class="mb-3 fw-bold" th:text="${paquete.name}">Nombre del Paquete</h1>
-            <p><strong>Descripción:</strong></p>
+            <p><strong th:text="#{detalle.description}">Descripción:</strong></p>
             <p th:text="${paquete.description}">Descripción completa...</p>
 
-            <p><strong>Precio:</strong>
+            <p><strong th:text="#{detalle.price}">Precio:</strong>
                 <span th:text="${#numbers.formatDecimal(paquete.price, 1, 'COMMA', 2, 'POINT')} + ' COP'"></span></p>
 
-            <p><strong>Duración:</strong>
-                <span th:text="${paquete.durationDays} + ' días'">0 días</span></p>
+            <p><strong th:text="#{detalle.duration}">Duración:</strong>
+                <span th:text="${paquete.durationDays} + ' ' + #{detalle.days}">0 días</span></p>
 
-            <p><strong>Ciudad:</strong>
+            <p><strong th:text="#{detalle.city}">Ciudad:</strong>
                 <span th:text="${paquete.city.name}">Ciudad</span></p>
 
             <!-- Botones de acción -->
             <div class="mt-4 d-flex flex-wrap gap-3">
                 <a th:href="@{'/comprar/' + ${paquete.packageId}}" class="btn btn-success btn-lg">
-                    <i class="bi bi-cart"></i> Comprar ahora
+                    <i class="bi bi-cart"></i> <span th:text="#{detalle.button.buy}">Comprar ahora</span>
                 </a>
-                <a th:href="@{/templates/user}" class="btn btn-secondary btn-lg">
-                    <i class="bi bi-arrow-left"></i> Volver al inicio
+                <a th:href="@{/home}" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-arrow-left"></i> <span th:text="#{detalle.button.back}">Volver al inicio</span>
                 </a>
                 <a th:href="@{/paquetes}" class="btn btn-success btn-lg">
-                    <i class="bi bi-arrow-right"></i> Paquetes
+                    <i class="bi bi-arrow-right"></i> <span th:text="#{detalle.button.packages}">Paquetes</span>
                 </a>
                 <a th:href="@{/hoteles-restaurantes}" class="btn btn-primary btn-lg">
-                    <i class="bi bi-building"></i> Hoteles y Restaurantes
+                    <i class="bi bi-building"></i> <span th:text="#{detalle.button.hotels}">Hoteles y Restaurantes</span>
                 </a>
             </div>
-
         </div>
     </div>
 </div>

@@ -38,8 +38,8 @@
             font-weight: 600;
             margin: 0;
           ">
-                Makao es tu mejor aliado para descubrir los destinos turísticos más increíbles.<br/>
-                ¡Explora con nosotros y vive experiencias únicas!
+                <span th:text="#{footer.description}">Makao es tu mejor aliado para descubrir los destinos turísticos más increíbles.<br/>
+                ¡Explora con nosotros y vive experiencias únicas!</span>
             </p>
         </div>
 
@@ -52,7 +52,7 @@
           align-items: center;
           text-align: center;
         ">
-            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;">Enlaces rápidos</h4>
+            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;" th:text="#{footer.quicklinks}">Enlaces rápidos</h4>
             <ul style="
             list-style: none;
             padding: 0;
@@ -62,22 +62,22 @@
           ">
                 <li style="margin: 8px 0;">
                     <a href="/" style="color: #0066cc; text-decoration: none;">
-                        <i class="fas fa-home" style="margin-right: 8px; color: #004080;"></i>Inicio
+                        <i class="fas fa-home" style="margin-right: 8px; color: #004080;"></i><span th:text="#{menu.home}">Inicio</span>
                     </a>
                 </li>
                 <li style="margin: 8px 0;">
                     <a href="/paquetes" style="color: #0066cc; text-decoration: none;">
-                        <i class="fas fa-suitcase-rolling" style="margin-right: 8px; color: #004080;"></i>Paquetes
+                        <i class="fas fa-suitcase-rolling" style="margin-right: 8px; color: #004080;"></i><span th:text="#{menu.packages}">Paquetes</span>
                     </a>
                 </li>
                 <li style="margin: 8px 0;">
                     <a href="/hoteles-restaurantes" style="color: #0066cc; text-decoration: none;">
-                        <i class="fas fa-bed" style="margin-right: 8px; color: #004080;"></i>Hoteles & Restaurantes
+                        <i class="fas fa-bed" style="margin-right: 8px; color: #004080;"></i><span th:text="#{menu.hotels}">Hoteles & Restaurantes</span>
                     </a>
                 </li>
                 <li style="margin: 8px 0;">
                     <a href="/contacto" style="color: #0066cc; text-decoration: none;">
-                        <i class="fas fa-envelope" style="margin-right: 8px; color: #004080;"></i>Contacto
+                        <i class="fas fa-envelope" style="margin-right: 8px; color: #004080;"></i><span th:text="#{menu.contact}">Contacto</span>
                     </a>
                 </li>
             </ul>
@@ -94,7 +94,7 @@
           font-weight: 600;
           color: #0066cc;
         ">
-            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;">Contacto</h4>
+            <h4 style="margin-bottom: 15px; color: #004080; letter-spacing: 1px;" th:text="#{footer.contact}">Contacto</h4>
             <p style="margin: 3px 0;">
                 <i class="fas fa-envelope" style="margin-right: 8px; color: #004080;"></i>
                 contacto@makao.com
@@ -105,7 +105,7 @@
             </p>
             <p style="margin: 3px 0;">
                 <i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #004080;"></i>
-                Calle Falsa 123, Ciudad Makao
+                <span th:text="#{footer.address}">Calle Falsa 123, Ciudad Makao</span>
             </p>
         </div>
 
@@ -117,9 +117,10 @@
         color: #6699cc;
         font-weight: 500;
       ">
-        &copy; 2025 Makao. Todos los derechos reservados.
+        &copy; 2025 Makao. <span th:text="#{footer.rights}">Todos los derechos reservados.</span>
     </div>
 
+    <!-- Estilos (igual para todos los idiomas) -->
     <style>
         /* Responsive: centrar y apilar columnas en móviles, menos padding */
         @media (max-width: 768px) {

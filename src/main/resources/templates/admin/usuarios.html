@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px;">
-        <h2 style="color: #1a3d7c;">Usuarios</h2>
+        <h2 style="color: #1a3d7c;" th:text="#{usuarios.title}">Usuarios</h2>
         <a th:href="@{/admin/usuarios/nuevo}"
-           style="display: inline-block; margin: 10px 0; background-color: #1a3d7c; color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none;">
+           style="display: inline-block; margin: 10px 0; background-color: #1a3d7c; color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none;"
+           th:text="#{usuarios.button.new}">
             ➕ Crear nuevo usuario
         </a>
 
         <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
             <thead style="background-color: #1a3d7c; color: white;">
             <tr>
-                <th style="padding: 8px;">ID</th>
-                <th style="padding: 8px;">Correo</th>
-                <th style="padding: 8px;">Nombre</th>
-                <th style="padding: 8px;">Apellido</th>
-                <th style="padding: 8px;">Username</th>
-                <th style="padding: 8px;">Teléfono</th>
-                <th style="padding: 8px;">DNI</th>
-                <th style="padding: 8px;">Roles</th>
-                <th style="padding: 8px;">Acciones</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.id}">ID</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.email}">Correo</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.name}">Nombre</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.lastname}">Apellido</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.username}">Username</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.phone}">Teléfono</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.dni}">DNI</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.roles}">Roles</th>
+                <th style="padding: 8px;" th:text="#{usuarios.table.header.actions}">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -40,9 +43,12 @@
                 </td>
                 <td style="padding: 8px;">
                     <a th:href="@{'/admin/usuarios/editar/' + ${usuario.id}}"
-                       style="margin-right: 8px; text-decoration: none;">✏️ Editar</a>
+                       style="margin-right: 8px; text-decoration: none;"
+                       th:text="#{usuarios.action.edit}">✏️ Editar</a>
                     <a th:href="@{'/admin/usuarios/eliminar/' + ${usuario.id}}"
-                       onclick="return confirm('¿Estás seguro de eliminar este usuario?')" style="text-decoration: none;">🗑️ Eliminar</a>
+                       th:onclick="'return confirm(\'' + #{usuarios.delete.confirm} + '\')'"
+                       style="text-decoration: none;"
+                       th:text="#{usuarios.action.delete}">🗑️ Eliminar</a>
                 </td>
             </tr>
             </tbody>

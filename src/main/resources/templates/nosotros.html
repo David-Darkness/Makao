@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
-    <title>Acerca de Nosotros - Makao Paradise</title>
+    <meta charset="UTF-8">
+    <title th:text="#{nosotros.title}">Acerca de Nosotros - Makao Paradise</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -101,20 +102,20 @@
 <!-- Header -->
 <div class="about-header">
     <div class="container">
-        <h1 class="display-4">Conoce Makao Paradise</h1>
-        <p class="lead">Transformando el turismo regional a través de la tecnología</p>
+        <h1 class="display-4" th:text="#{nosotros.header}">Conoce Makao Paradise</h1>
+        <p class="lead" th:text="#{nosotros.subheader}">Transformando el turismo regional a través de la tecnología</p>
     </div>
 </div>
 
 <div class="container mb-5">
     <div class="logo-container">
-        <img th:src="@{/images/makao-logo.png}" alt="Makao Paradise Logo" class="logo-img">
+        <img th:src="@{/images/makao-logo.png}" th:alt="#{nosotros.logo.alt}" class="logo-img">
     </div>
 
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <h2 class="text-center mb-4">Nuestra Razón de Ser</h2>
-            <p class="lead text-center">
+            <h2 class="text-center mb-4" th:text="#{nosotros.reason.title}">Nuestra Razón de Ser</h2>
+            <p class="lead text-center" th:text="#{nosotros.reason.text}">
                 En Makao Paradise creemos en el poder transformador del turismo bien gestionado y en la importancia de visibilizar los destinos regionales.
             </p>
         </div>
@@ -123,50 +124,50 @@
     <div class="mission-vision">
         <div class="row">
             <div class="col-md-6">
-                <h3><i class="fas fa-bullseye me-2"></i>Misión</h3>
-                <p>Digitalizar y promover la oferta turística de los departamentos de Huila y Meta, conectando a los viajeros con experiencias auténticas mientras impulsamos el desarrollo económico local.</p>
+                <h3><i class="fas fa-bullseye me-2"></i><span th:text="#{nosotros.mission.title}">Misión</span></h3>
+                <p th:text="#{nosotros.mission.text}">Digitalizar y promover la oferta turística de los departamentos de Huila y Meta, conectando a los viajeros con experiencias auténticas mientras impulsamos el desarrollo económico local.</p>
             </div>
             <div class="col-md-6">
-                <h3><i class="fas fa-eye me-2"></i>Visión</h3>
-                <p>Ser la plataforma líder en turismo regional para 2025, reconocida por nuestra innovación tecnológica y nuestro impacto positivo en las comunidades locales.</p>
+                <h3><i class="fas fa-eye me-2"></i><span th:text="#{nosotros.vision.title}">Visión</span></h3>
+                <p th:text="#{nosotros.vision.text}">Ser la plataforma líder en turismo regional para 2025, reconocida por nuestra innovación tecnológica y nuestro impacto positivo en las comunidades locales.</p>
             </div>
         </div>
     </div>
 
-    <h2 class="mt-5 mb-4">El Problema que Resolvemos</h2>
-    <p>
+    <h2 class="mt-5 mb-4" th:text="#{nosotros.problem.title}">El Problema que Resolvemos</h2>
+    <p th:text="#{nosotros.problem.text}">
         El problema central que buscamos abordar es la <strong>baja visibilidad digital del turismo regional</strong> en los departamentos de Huila y Meta, lo que limita su proyección a nivel nacional e internacional. A pesar de su gran diversidad cultural, gastronómica y natural, muchos destinos y servicios turísticos no están adecuadamente promocionados en plataformas digitales modernas.
     </p>
 
     <div class="highlight-box">
-        <p class="mb-0">
+        <p class="mb-0" th:text="#{nosotros.quote}">
             "La idea de Makao Paradise nace al observar la carencia de herramientas tecnológicas que integren efectivamente la oferta turística en una plataforma intuitiva, accesible y confiable."
         </p>
     </div>
 
-    <h3 class="mt-4">Causas identificadas:</h3>
+    <h3 class="mt-4" th:text="#{nosotros.causes.title}">Causas identificadas:</h3>
     <ul class="problem-list">
-        <li>Escasa inversión en plataformas tecnológicas por parte de empresas turísticas pequeñas</li>
-        <li>Falta de digitalización en procesos de promoción y reservas</li>
-        <li>Desconocimiento de herramientas modernas de desarrollo web</li>
-        <li>Ausencia de integración entre actores turísticos (hoteles, restaurantes, agencias)</li>
+        <li th:text="#{nosotros.causes.item1}">Escasa inversión en plataformas tecnológicas por parte de empresas turísticas pequeñas</li>
+        <li th:text="#{nosotros.causes.item2}">Falta de digitalización en procesos de promoción y reservas</li>
+        <li th:text="#{nosotros.causes.item3}">Desconocimiento de herramientas modernas de desarrollo web</li>
+        <li th:text="#{nosotros.causes.item4}">Ausencia de integración entre actores turísticos (hoteles, restaurantes, agencias)</li>
     </ul>
 
-    <h2 class="mt-5 mb-4">Nuestro Impacto</h2>
+    <h2 class="mt-5 mb-4" th:text="#{nosotros.impact.title}">Nuestro Impacto</h2>
     <div class="row">
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3><i class="fas fa-users me-2"></i>Para los Viajeros</h3>
-                    <p>Ofrecemos una experiencia de planificación integral con información confiable, reservas simplificadas y descubrimiento de experiencias auténticas fuera de los circuitos turísticos convencionales.</p>
+                    <h3><i class="fas fa-users me-2"></i><span th:text="#{nosotros.impact.travelers}">Para los Viajeros</span></h3>
+                    <p th:text="#{nosotros.impact.travelers.text}">Ofrecemos una experiencia de planificación integral con información confiable, reservas simplificadas y descubrimiento de experiencias auténticas fuera de los circuitos turísticos convencionales.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3><i class="fas fa-building me-2"></i>Para los Prestadores</h3>
-                    <p>Proporcionamos visibilidad digital, herramientas de gestión modernas y acceso a nuevos mercados, ayudando a profesionalizar sus operaciones y aumentar sus ingresos.</p>
+                    <h3><i class="fas fa-building me-2"></i><span th:text="#{nosotros.impact.providers}">Para los Prestadores</span></h3>
+                    <p th:text="#{nosotros.impact.providers.text}">Proporcionamos visibilidad digital, herramientas de gestión modernas y acceso a nuevos mercados, ayudando a profesionalizar sus operaciones y aumentar sus ingresos.</p>
                 </div>
             </div>
         </div>
@@ -174,10 +175,10 @@
 
     <div class="text-center mt-5">
         <a th:href="@{/contacto}" class="btn btn-primary-custom text-white me-3">
-            <i class="fas fa-envelope me-2"></i>Contáctanos
+            <i class="fas fa-envelope me-2"></i><span th:text="#{nosotros.button.contact}">Contáctanos</span>
         </a>
         <a th:href="@{/paquetes}" class="btn btn-outline-custom">
-            <i class="fas fa-suitcase me-2"></i>Descubre nuestros paquetes
+            <i class="fas fa-suitcase me-2"></i><span th:text="#{nosotros.button.packages}">Descubre nuestros paquetes</span>
         </a>
     </div>
 </div>

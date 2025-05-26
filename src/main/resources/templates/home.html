@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8"/>
-    <title>Makao - Turismo Huila y Meta</title>
+    <title th:text="#{home.title}">Makao - Turismo Huila y Meta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -66,10 +66,10 @@
                          alt="Paisaje Huila"
                          style="object-fit: cover; margin: 0; padding: 0;">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="mb-2 text-center fw-bold">Los mejores lugares<br>del HUILA Y META</h2>
-                        <p class="mb-4 text-center">Explora el turismo en los departamentos más hermosos de Colombia.</p>
-                        <a class="btn btn-primary me-2" href="#">Get Started</a>
-                        <a class="btn btn-outline-primary" href="#">Learn more</a>
+                        <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide1.title}">Los mejores lugares<br>del HUILA Y META</h2>
+                        <p class="mb-4 text-center" th:text="#{carousel.slide1.description}">Explora el turismo en los departamentos más hermosos de Colombia.</p>
+                        <a class="btn btn-primary me-2" href="#" th:text="#{button.get.started}">Get Started</a>
+                        <a class="btn btn-outline-primary" href="#" th:text="#{button.learn.more}">Learn more</a>
                     </div>
                 </div>
 
@@ -80,10 +80,10 @@
                          alt="Paisaje Meta"
                          style="object-fit: cover; margin: 0; padding: 0;">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="mb-2 text-center fw-bold">Descubre el Meta</h2>
-                        <p class="mb-4 text-center">Paisajes llaneros, cultura y aventura sin igual.</p>
-                        <a class="btn btn-primary me-2" href="#">Explorar</a>
-                        <a class="btn btn-outline-primary" href="#">Ver más</a>
+                        <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide2.title}">Descubre el Meta</h2>
+                        <p class="mb-4 text-center" th:text="#{carousel.slide2.description}">Paisajes llaneros, cultura y aventura sin igual.</p>
+                        <a class="btn btn-primary me-2" href="#" th:text="#{button.explore}">Explorar</a>
+                        <a class="btn btn-outline-primary" href="#" th:text="#{button.see.more}">Ver más</a>
                     </div>
                 </div>
 
@@ -94,10 +94,10 @@
                          alt="Turismo Huila"
                          style="object-fit: cover; margin: 0; padding: 0;">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="mb-2 text-center fw-bold">Aventuras en el Huila</h2>
-                        <p class="mb-4 text-center">Ríos, montañas y el desierto de la Tatacoa te esperan.</p>
-                        <a class="btn btn-primary me-2" href="#">Ver destinos</a>
-                        <a class="btn btn-outline-primary" href="#">Más info</a>
+                        <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide3.title}">Aventuras en el Huila</h2>
+                        <p class="mb-4 text-center" th:text="#{carousel.slide3.description}">Ríos, montañas y el desierto de la Tatacoa te esperan.</p>
+                        <a class="btn btn-primary me-2" href="#" th:text="#{button.view.destinations}">Ver destinos</a>
+                        <a class="btn btn-outline-primary" href="#" th:text="#{button.more.info}">Más info</a>
                     </div>
                 </div>
 
@@ -114,25 +114,20 @@
     </div>
 </section>
 
-
-
-
-
-<!-- Sección de paquetes estáticos -->
 <!-- Sección de paquetes dinámicos -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h3 class="mb-5 text-center fw-bold">Popular Destinations</h3>
+        <h3 class="mb-5 text-center fw-bold" th:text="#{section.popular.destinations}">Popular Destinations</h3>
         <div class="row">
             <div class="col-md-4 mb-4" th:each="paquete : ${paquetes}">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="ratio ratio-4x3">
                         <img th:if="${paquete.imagePath != null}"
                              th:src="@{/images/imagesPaquetes/{filename}(filename=${paquete.imagePath})}"
-                             alt="Imagen del paquete"
+                             th:alt="${paquete.name}"
                              class="img-fluid rounded-top object-fit-cover" />
                         <div th:if="${paquete.imagePath == null}" class="d-flex align-items-center justify-content-center bg-secondary text-white rounded-top" style="height: 100%;">
-                            <span style="font-style: italic;">Sin imagen</span>
+                            <span style="font-style: italic;" th:text="#{label.no.image}">Sin imagen</span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -142,10 +137,10 @@
                             <span class="text-primary fw-semibold"
                                   th:text="${#numbers.formatDecimal(paquete.price, 1, 'COMMA', 2, 'POINT')} + ' COP'">
                                 Precio</span>
-                            <small class="text-muted" th:text="${paquete.durationDays} + ' días'">Duración</small>
+                            <small class="text-muted" th:text="${paquete.durationDays} + ' ' + #{label.days}">Duración</small>
                         </div>
                         <a th:href="@{'/paquetes/detalle/' + ${paquete.packageId}}"
-                           class="btn btn-outline-primary w-100 rounded-pill">Ver detalles</a>
+                           class="btn btn-outline-primary w-100 rounded-pill" th:text="#{button.view.details}">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -153,36 +148,38 @@
     </div>
 </section>
 
-
-
-                    <!-- Pasos para viajar -->
+<!-- Pasos para viajar -->
 <section class="py-5" style="background: #eaf2fb;">
     <div class="container">
         <div class="row align-items-center">
             <!-- Pasos -->
             <div class="col-md-6">
-                <div class="mb-2 text-uppercase fw-semibold" style="color: #4a90e2;">🚀 Fácil y Rápido</div>
-                <h4 class="mb-4 text-dark">Viaja en <span style="color: #4a90e2;">3 Pasos Simples</span></h4>
+                <div class="mb-2 text-uppercase fw-semibold" style="color: #4a90e2;" th:text="#{steps.easy.fast}">🚀 Fácil y Rápido</div>
+                <h4 class="mb-4 text-dark">
+                    <span th:text="#{steps.travel.in}">Viaja en</span>
+                    <span style="color: #4a90e2;" th:text="#{steps.simple.steps}">3 Pasos Simples</span>
+                </h4>
+
                 <ul class="list-unstyled checklist">
                     <li class="mb-3 d-flex align-items-start">
                         <span class="fs-4 me-3">🗺️</span>
                         <span>
-                            <b class="text-dark">Elige tu Destino</b><br>
-                            <small class="text-muted">Explora los rincones del Huila y Meta.</small>
+                            <b class="text-dark" th:text="#{steps.choose.destination}">Elige tu Destino</b><br>
+                            <small class="text-muted" th:text="#{steps.explore.regions}">Explora los rincones del Huila y Meta.</small>
                         </span>
                     </li>
                     <li class="mb-3 d-flex align-items-start">
                         <span class="fs-4 me-3">🛒</span>
                         <span>
-                            <b class="text-dark">Haz tu Reserva</b><br>
-                            <small class="text-muted">Paga en línea o en puntos aliados.</small>
+                            <b class="text-dark" th:text="#{steps.make.reservation}">Haz tu Reserva</b><br>
+                            <small class="text-muted" th:text="#{steps.payment.options}">Paga en línea o en puntos aliados.</small>
                         </span>
                     </li>
                     <li class="mb-3 d-flex align-items-start">
                         <span class="fs-4 me-3">🏞️</span>
                         <span>
-                            <b class="text-dark">Vive la Experiencia</b><br>
-                            <small class="text-muted">Disfruta de alojamiento, tours y comida local.</small>
+                            <b class="text-dark" th:text="#{steps.live.experience}">Vive la Experiencia</b><br>
+                            <small class="text-muted" th:text="#{steps.enjoy.services}">Disfruta de alojamiento, tours y comida local.</small>
                         </span>
                     </li>
                 </ul>
@@ -197,7 +194,7 @@
                     <div th:if="${paqueteDestacado.imagePath == null}"
                          class="card-img-top bg-secondary d-flex justify-content-center align-items-center"
                          style="height: 180px; color: white;">
-                        <span>Sin imagen</span>
+                        <span th:text="#{label.no.image}">Sin imagen</span>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title" style="color: #2c72b5;" th:text="${paqueteDestacado.name}">Nombre del paquete</h5>
@@ -207,47 +204,44 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold" style="color: #3884d9;"
-                                  th:text="'Desde ' + ${#numbers.formatDecimal(paqueteDestacado.price, 1, 'COMMA', 2, 'POINT')} + ' COP'">
+                                  th:text="#{label.from} + ' ' + ${#numbers.formatDecimal(paqueteDestacado.price, 1, 'COMMA', 2, 'POINT')} + ' COP'">
                                 Precio
                             </span>
-                            <a th:href="@{'/paquetes/detalle/' + ${paqueteDestacado.packageId}}" class="btn btn-sm" style="background-color: #4a90e2; color: white;">
+                            <a th:href="@{'/paquetes/detalle/' + ${paqueteDestacado.packageId}}" class="btn btn-sm" style="background-color: #4a90e2; color: white;" th:text="#{button.view.details}">
                                 Ver detalles
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
-
-
 <!-- Por qué escogernos -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h4 class="text-center mb-4 fw-bold">¿Por qué escogernos?</h4>
+        <h4 class="text-center mb-4 fw-bold" th:text="#{section.why.choose.us}">¿Por qué escogernos?</h4>
         <div class="row text-center">
             <div class="col-6 col-md-3 mb-4">
                 <div class="icon-box text-primary"><i class="bi bi-globe-americas"></i></div>
-                <h6>Turismo local especializado</h6>
-                <p class="small">Guías expertos y experiencias auténticas.</p>
+                <h6 th:text="#{feature.local.tourism}">Turismo local especializado</h6>
+                <p class="small" th:text="#{feature.local.tourism.desc}">Guías expertos y experiencias auténticas.</p>
             </div>
             <div class="col-6 col-md-3 mb-4">
                 <div class="icon-box text-success"><i class="bi bi-house-door-fill"></i></div>
-                <h6>Alojamiento seleccionado</h6>
-                <p class="small">Hoteles y hospedajes verificados.</p>
+                <h6 th:text="#{feature.selected.accommodation}">Alojamiento seleccionado</h6>
+                <p class="small" th:text="#{feature.selected.accommodation.desc}">Hoteles y hospedajes verificados.</p>
             </div>
             <div class="col-6 col-md-3 mb-4">
                 <div class="icon-box text-warning"><i class="bi bi-bus-front-fill"></i></div>
-                <h6>Transporte confiable</h6>
-                <p class="small">Viaja seguro y cómodo.</p>
+                <h6 th:text="#{feature.reliable.transport}">Transporte confiable</h6>
+                <p class="small" th:text="#{feature.reliable.transport.desc}">Viaja seguro y cómodo.</p>
             </div>
             <div class="col-6 col-md-3 mb-4">
                 <div class="icon-box text-danger"><i class="bi bi-clipboard2-check-fill"></i></div>
-                <h6>Planes personalizados</h6>
-                <p class="small">Viajes a tu medida, desde el inicio hasta el final.</p>
+                <h6 th:text="#{feature.custom.plans}">Planes personalizados</h6>
+                <p class="small" th:text="#{feature.custom.plans.desc}">Viajes a tu medida, desde el inicio hasta el final.</p>
             </div>
         </div>
     </div>
@@ -256,7 +250,7 @@
 <!-- Aliados -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h5 class="text-center mb-4 fw-bold">Nuestros Aliados</h5>
+        <h5 class="text-center mb-4 fw-bold" th:text="#{section.our.allies}">Nuestros Aliados</h5>
     </div>
     <div class="aliados-slider">
         <div class="aliados-track">
@@ -273,10 +267,7 @@
     </div>
 </section>
 
-
-
 <!-- Footer con fragmento -->
-
 <div th:replace="fragments/footer :: footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

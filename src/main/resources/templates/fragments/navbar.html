@@ -13,38 +13,51 @@
             </div>
 
             <!-- Logo escritorio -->
-            <a class="navbar-brand d-none d-md-block" th:href="@{/templates/user}">
+            <a class="navbar-brand d-none d-md-block" th:href="@{/home}">
                 <img th:src="@{/images/logo-horizontal.png}" alt="Logo Makao">
             </a>
 
             <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/templates/user}">Home</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}" th:text="#{navbar.home}">Home</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicios</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" th:text="#{navbar.services}">Servicios</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/paquetes}">Paquetes</a></li>
-                            <li><a class="dropdown-item" th:href="@{/hoteles-restaurantes}">Hoteles y
-                                Restaurantes</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/paquetes}" th:text="#{navbar.packages}">Paquetes</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/hoteles-restaurantes}" th:text="#{navbar.hotelsRestaurants}">Hoteles y Restaurantes</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Destinos</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" th:text="#{navbar.destinations}">Destinos</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/destinos/huila}">Huila</a></li>
-                            <li><a class="dropdown-item" th:href="@{/destinos/meta}">Meta</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/destinos/huila}" th:text="#{navbar.destination.huila}">Huila</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/destinos/meta}" th:text="#{navbar.destination.meta}">Meta</a>
+                            </li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/nosotros}">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/contacto}">Contacto</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/nosotros}" th:text="#{navbar.about}">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contacto}" th:text="#{navbar.contact}">Contacto</a>
+                    </li>
                 </ul>
 
                 <!-- Usuario e idioma -->
                 <div class="d-flex align-items-center">
                     <!-- Iniciar sesión -->
                     <div sec:authorize="!isAuthenticated()">
-                        <a class="btn btn-login" th:href="@{/login}">Iniciar Sesión</a>
+                        <a class="btn btn-login" th:href="@{/login}" th:text="#{navbar.login}">Iniciar Sesión</a>
                     </div>
 
                     <!-- Usuario autenticado -->
@@ -54,17 +67,20 @@
                             <span th:text="${#authentication.name.length() > 15} ? ${#authentication.name.substring(0, 12)} + '...' : ${#authentication.name}">Usuario</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" th:href="@{/perfil}">Mi Perfil</a></li>
-                            <li><a class="dropdown-item" th:href="@{/reservas}">Mis Reservas</a></li> <!-- NUEVO -->
+                            <li>
+                                <a class="dropdown-item" th:href="@{/perfil}" th:text="#{navbar.profile}">Mi Perfil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/reservas}" th:text="#{navbar.reservations}">Mis Reservas</a>
+                            </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form th:action="@{/logout}" method="post">
-                                    <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                    <button type="submit" class="dropdown-item" th:text="#{navbar.logout}">Cerrar Sesión</button>
                                 </form>
                             </li>
                         </ul>
                     </div>
-
 
                     <!-- Idioma -->
                     <div class="dropdown dropdown-language ms-2">
@@ -72,10 +88,10 @@
                             <span th:text="${#locale.language.toUpperCase()}">ES</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='es')}">ES - Español</a></li>
-                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='en')}">EN - English</a></li>
-                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='fr')}">FR - French</a></li>
-                            <li><a class="dropdown-item" th:href="@{__${#httpServletRequest.requestURI}__(lang='de')}">DE - German</a></li>
+                            <li><a class="dropdown-item" th:href="@{?lang=es}">ES - Español</a></li>
+                            <li><a class="dropdown-item" th:href="@{?lang=en}">EN - English</a></li>
+                            <li><a class="dropdown-item" th:href="@{?lang=fr}">FR - French</a></li>
+                            <li><a class="dropdown-item" th:href="@{?lang=de}">DE - German</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,4 +99,3 @@
         </div>
     </nav>
 </div>
-

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
-    <title>Contacto - Makao Paradise</title>
+    <meta charset="UTF-8">
+    <title th:text="#{contacto.title}">Contacto - Makao Paradise</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -101,8 +102,8 @@
 <!-- Header -->
 <div class="contact-header">
     <div class="container">
-        <h1 class="display-4">Contáctanos</h1>
-        <p class="lead">Estamos aquí para ayudarte a descubrir los mejores destinos del Huila y Meta</p>
+        <h1 class="display-4" th:text="#{contacto.header}">Contáctanos</h1>
+        <p class="lead" th:text="#{contacto.subheader}">Estamos aquí para ayudarte a descubrir los mejores destinos del Huila y Meta</p>
     </div>
 </div>
 
@@ -115,64 +116,64 @@
         <div class="col-md-4 mb-4">
             <div class="card contact-card text-center p-4">
                 <i class="fas fa-map-marker-alt contact-icon"></i>
-                <h3>Ubicación</h3>
-                <p class="text-muted">Calle 12 # 34-56<br>Neiva, Huila<br>Colombia</p>
+                <h3 th:text="#{contacto.location.title}">Ubicación</h3>
+                <p class="text-muted" th:text="#{contacto.location.address}">Calle 12 # 34-56<br>Neiva, Huila<br>Colombia</p>
             </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="card contact-card text-center p-4">
                 <i class="fas fa-phone-alt contact-icon"></i>
-                <h3>Teléfonos</h3>
-                <p class="text-muted">+57 123 456 7890<br>+57 987 654 3210<br>Lunes a Viernes: 8am - 6pm</p>
+                <h3 th:text="#{contacto.phones.title}">Teléfonos</h3>
+                <p class="text-muted" th:text="#{contacto.phones.numbers}">+57 123 456 7890<br>+57 987 654 3210<br>Lunes a Viernes: 8am - 6pm</p>
             </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="card contact-card text-center p-4">
                 <i class="fas fa-envelope contact-icon"></i>
-                <h3>Correo</h3>
-                <p class="text-muted">info@makaoparadise.com<br>reservas@makaoparadise.com<br>Soporte 24/7</p>
+                <h3 th:text="#{contacto.email.title}">Correo</h3>
+                <p class="text-muted" th:text="#{contacto.email.addresses}">info@makaoparadise.com<br>reservas@makaoparadise.com<br>Soporte 24/7</p>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6 mb-4">
-            <h2 class="mb-4">Envía un mensaje</h2>
+            <h2 class="mb-4" th:text="#{contacto.form.title}">Envía un mensaje</h2>
             <form>
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Nombre completo" required>
+                    <input type="text" class="form-control" th:placeholder="#{contacto.form.name}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                    <input type="email" class="form-control" th:placeholder="#{contacto.form.email}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="tel" class="form-control" placeholder="Teléfono (opcional)">
+                    <input type="tel" class="form-control" th:placeholder="#{contacto.form.phone}">
                 </div>
                 <div class="mb-3">
                     <select class="form-control" required>
-                        <option value="" disabled selected>Selecciona un tema</option>
-                        <option>Consulta sobre paquetes</option>
-                        <option>Reservas</option>
-                        <option>Soporte técnico</option>
-                        <option>Socios comerciales</option>
-                        <option>Otro</option>
+                        <option value="" disabled selected th:text="#{contacto.form.select.topic}">Selecciona un tema</option>
+                        <option th:text="#{contacto.form.topic.packages}">Consulta sobre paquetes</option>
+                        <option th:text="#{contacto.form.topic.bookings}">Reservas</option>
+                        <option th:text="#{contacto.form.topic.support}">Soporte técnico</option>
+                        <option th:text="#{contacto.form.topic.partners}">Socios comerciales</option>
+                        <option th:text="#{contacto.form.topic.other}">Otro</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <textarea class="form-control" rows="5" placeholder="Tu mensaje..." required></textarea>
+                    <textarea class="form-control" rows="5" th:placeholder="#{contacto.form.message}" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-submit text-white">
-                    <i class="fas fa-paper-plane me-2"></i>Enviar mensaje
+                    <i class="fas fa-paper-plane me-2"></i><span th:text="#{contacto.form.button}">Enviar mensaje</span>
                 </button>
             </form>
         </div>
         <div class="col-lg-6 mb-4">
-            <h2 class="mb-4">Nuestra ubicación</h2>
+            <h2 class="mb-4" th:text="#{contacto.map.title}">Nuestra ubicación</h2>
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.391317240083!2d-73.25346792501456!3d2.9276005540712705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e681dca9a51a6a7%3A0x3b7c11f9a3a845c5!2sNeiva%2C%20Huila!5e0!3m2!1ses!2sco!4v1719233852043!5m2!1ses!2sco" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="text-center mt-4">
-                <h4>Síguenos en redes</h4>
+                <h4 th:text="#{contacto.social.title}">Síguenos en redes</h4>
                 <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>

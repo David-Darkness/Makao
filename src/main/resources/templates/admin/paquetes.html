@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px;">
-        <h1 style="margin-bottom: 20px; color: #1a3d7c;">Paquetes Turísticos</h1>
+        <h1 style="margin-bottom: 20px; color: #1a3d7c;" th:text="#{paquetes.title}">Paquetes Turísticos</h1>
 
         <a th:href="@{/admin/paquetes/nuevo}"
            style="
@@ -20,21 +22,22 @@
              transition: background-color 0.3s ease;
            "
            onmouseover="this.style.backgroundColor='#1450a0'"
-           onmouseout="this.style.backgroundColor='#1a3d7c'">
+           onmouseout="this.style.backgroundColor='#1a3d7c'"
+           th:text="#{paquetes.button.create}">
             Crear nuevo paquete
         </a>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <thead style="background-color: #1a3d7c; color: white;">
             <tr>
-                <th style="padding: 10px; text-align: left;">ID</th>
-                <th style="padding: 10px; text-align: left;">Nombre</th>
-                <th style="padding: 10px; text-align: left;">Descripción</th>
-                <th style="padding: 10px; text-align: right;">Precio</th>
-                <th style="padding: 10px; text-align: center;">Días</th>
-                <th style="padding: 10px; text-align: left;">Ciudad</th>
-                <th style="padding: 10px; text-align: center;">Imagen</th>
-                <th style="padding: 10px; text-align: center;">Acciones</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{paquetes.table.header.id}">ID</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{paquetes.table.header.name}">Nombre</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{paquetes.table.header.description}">Descripción</th>
+                <th style="padding: 10px; text-align: right;" th:text="#{paquetes.table.header.price}">Precio</th>
+                <th style="padding: 10px; text-align: center;" th:text="#{paquetes.table.header.days}">Días</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{paquetes.table.header.city}">Ciudad</th>
+                <th style="padding: 10px; text-align: center;" th:text="#{paquetes.table.header.image}">Imagen</th>
+                <th style="padding: 10px; text-align: center;" th:text="#{paquetes.table.header.actions}">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -45,15 +48,16 @@
                 <td style="padding: 10px; text-align: right;"
                     th:text="${#numbers.formatDecimal(paquete.price, 1, 'COMMA', 2, 'POINT')} + ' COP'"></td>
                 <td style="padding: 10px; text-align: center;" th:text="${paquete.durationDays}"></td>
-                <td style="padding: 10px;" th:text="${paquete.city != null ? paquete.city.name : 'Sin ciudad'}"></td>
+                <td th:if="${paquete.city != null}" th:text="${paquete.city.name}"></td>
+                <td th:unless="${paquete.city != null}" th:text="#{paquetes.table.nocity}"></td>
                 <td style="padding: 10px; text-align: center;">
                     <img th:if="${paquete.imagePath != null}"
                          th:src="@{/images/imagesPaquetes/{filename}(filename=${paquete.imagePath})}"
-                         alt="Imagen del paquete"
+                         th:alt="#{paquetes.table.header.image}"
                          width="150"
                          height="100"
                          style="object-fit: cover; border-radius: 6px; border: 1px solid #ccc;" />
-                    <span th:if="${paquete.imagePath == null}" style="color: #999; font-style: italic;">Sin imagen</span>
+                    <span th:if="${paquete.imagePath == null}" style="color: #999; font-style: italic;" th:text="#{paquetes.table.noimage}">Sin imagen</span>
                 </td>
                 <td style="padding: 10px; text-align: center;">
                     <a th:href="@{'/admin/paquetes/editar/' + ${paquete.packageId}}"
@@ -64,14 +68,16 @@
                          font-weight: 600;
                        "
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{paquetes.action.edit}">
                         Editar
                     </a>
                     <a th:href="@{'/admin/paquetes/eliminar/' + ${paquete.packageId}}"
                        style="color: #c60000; font-weight: 600; text-decoration: none;"
-                       onclick="return confirm('¿Estás seguro de eliminar este paquete?')"
+                       th:onclick="'return confirm(\'' + #{paquetes.delete.confirm} + '\')'"
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{paquetes.action.delete}">
                         Eliminar
                     </a>
                 </td>

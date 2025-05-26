@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8">
-    <title>Error - Makao</title>
+    <title th:text="#{error.title}">Error - Makao</title>
     <style>
         body {
             background-color: #f5f7fa;
@@ -64,10 +64,10 @@
     </style>
 </head>
 <body>
-<img src="/images/makao-logo.png" alt="Makao Logo" class="logo" />
+<img th:src="@{/images/makao-logo.png}" alt="Makao Logo" class="logo" />
 <h1 th:text="${status}">Error</h1>
-<h2 th:text="${error}">Ocurrió un error inesperado</h2>
-<p th:text="${message}">Por favor, vuelve a intentarlo más tarde.</p>
-<a href="#" onclick="window.history.back(); return false;" class="home-button">Volver</a>
+<h2 th:text="${error} ?: #{error.default.message}">Ocurrió un error inesperado</h2>
+<p th:text="${message} ?: #{error.default.instruction}">Por favor, vuelve a intentarlo más tarde.</p>
+<a href="#" onclick="window.history.back(); return false;" class="home-button" th:text="#{error.button.back}">Volver</a>
 </body>
 </html>

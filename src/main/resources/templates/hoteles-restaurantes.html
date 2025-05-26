@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
-    <title>Hoteles y Restaurantes</title>
+    <title th:text="#{hoteles.title}">Hoteles y Restaurantes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,29 +16,29 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="container mt-5">
-    <h1 class="text-center">Hoteles y Restaurantes</h1>
+    <h1 class="text-center" th:text="#{hoteles.header}">Hoteles y Restaurantes</h1>
 
     <!-- Filtro por ciudad -->
     <form method="get" action="#" class="row my-4">
         <div class="col-md-10">
-            <label>Ciudad</label>
+            <label th:text="#{hoteles.filter.city}">Ciudad</label>
             <select class="form-control" name="cityId">
-                <option value="">Todas las ciudades</option>
+                <option value="" th:text="#{hoteles.filter.allcities}">Todas las ciudades</option>
                 <option th:each="city : ${cities}" th:value="${city.cityId}"
                         th:text="${city.name + ' - ' + city.department.name}"
                         th:selected="${city.cityId} == ${selectedCity}"></option>
             </select>
         </div>
         <div class="col-md-2 d-flex align-items-end">
-            <button class="btn btn-primary w-100" type="submit">Filtrar</button>
+            <button class="btn btn-primary w-100" type="submit" th:text="#{hoteles.filter.button}">Filtrar</button>
         </div>
     </form>
 
     <!-- Hoteles -->
-    <h2 class="mt-4">Hoteles</h2>
+    <h2 class="mt-4" th:text="#{hoteles.hotels}">Hoteles</h2>
     <div class="row">
         <div th:if="${#lists.isEmpty(hotels)}" class="col-12 text-center mt-3">
-            <div class="alert alert-warning">No se encontraron hoteles para la ciudad seleccionada.</div>
+            <div class="alert alert-warning" th:text="#{hoteles.nohotels}">No se encontraron hoteles para la ciudad seleccionada.</div>
         </div>
 
         <div class="col-md-4 mb-4" th:each="hotel : ${hotels}">
@@ -46,28 +46,28 @@
                 <div class="ratio ratio-4x3">
                     <img th:if="${hotel.imagePath != null}"
                          th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
-                         class="img-fluid rounded-top object-fit-cover" alt="Imagen Hotel">
+                         class="img-fluid rounded-top object-fit-cover" th:alt="${hotel.name}">
                     <div th:if="${hotel.imagePath == null}"
                          class="d-flex align-items-center justify-content-center bg-secondary text-white rounded-top"
                          style="height: 100%;">
-                        <span style="font-style: italic;">Sin imagen</span>
+                        <span style="font-style: italic;" th:text="#{hoteles.noimage}">Sin imagen</span>
                     </div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title fw-bold mb-2" th:text="${hotel.name}">Nombre Hotel</h5>
                     <p class="card-text text-muted" th:text="${#strings.abbreviate(hotel.description, 100)}">Descripción</p>
-                    <p class="card-text"><strong>Estrellas:</strong> <span th:text="${hotel.stars}"></span></p>
-                    <a th:href="@{'/hoteles/' + ${hotel.hotelId}}" class="btn btn-outline-primary w-100 rounded-pill">Ver detalles</a>
+                    <p class="card-text"><strong th:text="#{hoteles.stars}">Estrellas:</strong> <span th:text="${hotel.stars}"></span></p>
+                    <a th:href="@{'/hoteles/' + ${hotel.hotelId}}" class="btn btn-outline-primary w-100 rounded-pill" th:text="#{hoteles.details}">Ver detalles</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Restaurantes -->
-    <h2 class="mt-5">Restaurantes</h2>
+    <h2 class="mt-5" th:text="#{hoteles.restaurants}">Restaurantes</h2>
     <div class="row">
         <div th:if="${#lists.isEmpty(restaurants)}" class="col-12 text-center mt-3">
-            <div class="alert alert-warning">No se encontraron restaurantes para la ciudad seleccionada.</div>
+            <div class="alert alert-warning" th:text="#{hoteles.norestaurants}">No se encontraron restaurantes para la ciudad seleccionada.</div>
         </div>
 
         <div class="col-md-4 mb-4" th:each="rest : ${restaurants}">
@@ -75,18 +75,18 @@
                 <div class="ratio ratio-4x3">
                     <img th:if="${rest.imagePath != null}"
                          th:src="@{/images/imagesRestaurante/{filename}(filename=${rest.imagePath})}"
-                         class="img-fluid rounded-top object-fit-cover" alt="Imagen Restaurante">
+                         class="img-fluid rounded-top object-fit-cover" th:alt="${rest.name}">
                     <div th:if="${rest.imagePath == null}"
                          class="d-flex align-items-center justify-content-center bg-secondary text-white rounded-top"
                          style="height: 100%;">
-                        <span style="font-style: italic;">Sin imagen</span>
+                        <span style="font-style: italic;" th:text="#{hoteles.noimage}">Sin imagen</span>
                     </div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title fw-bold mb-2" th:text="${rest.name}">Nombre Restaurante</h5>
                     <p class="card-text text-muted" th:text="${#strings.abbreviate(rest.info, 100)}">Información</p>
-                    <p class="card-text"><strong>Dirección:</strong> <span th:text="${rest.address}">Dirección</span></p>
-                    <a th:href="@{'/restaurantes/' + ${rest.restaurantId}}" class="btn btn-outline-primary w-100 rounded-pill">Ver detalles</a>
+                    <p class="card-text"><strong th:text="#{hoteles.address}">Dirección:</strong> <span th:text="${rest.address}">Dirección</span></p>
+                    <a th:href="@{'/restaurantes/' + ${rest.restaurantId}}" class="btn btn-outline-primary w-100 rounded-pill" th:text="#{hoteles.details}">Ver detalles</a>
                 </div>
             </div>
         </div>

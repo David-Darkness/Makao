@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${hotel.name}">Detalle del Hotel</title>
+    <title th:text="${hotel.name} + ' - ' + #{hotel.title}">Detalle del Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
@@ -19,8 +18,8 @@
             <img th:if="${hotel.imagePath != null}"
                  th:src="@{/images/imagesHotel/{filename}(filename=${hotel.imagePath})}"
                  class="img-fluid rounded shadow"
-                 alt="Imagen del hotel">
-            <div th:if="${hotel.imagePath == null}" class="text-muted fst-italic">
+                 th:alt="${hotel.name}">
+            <div th:if="${hotel.imagePath == null}" class="text-muted fst-italic" th:text="#{hotel.noimage}">
                 Sin imagen disponible
             </div>
         </div>
@@ -28,25 +27,24 @@
         <div class="col-md-6">
             <h1 class="mb-3 fw-bold" th:text="${hotel.name}">Nombre del Hotel</h1>
 
-            <p><strong>Descripción:</strong></p>
+            <p><strong th:text="#{hotel.description}">Descripción:</strong></p>
             <p th:text="${hotel.description}">Descripción completa...</p>
 
-            <p><strong>Estrellas:</strong> <span th:text="${hotel.stars}">0</span></p>
-            <p><strong>Dirección:</strong> <span th:text="${hotel.address}">Dirección</span></p>
-            <p><strong>Ciudad:</strong> <span th:text="${hotel.city.name}">Ciudad</span></p>
+            <p><strong th:text="#{hotel.stars}">Estrellas:</strong> <span th:text="${hotel.stars}">0</span></p>
+            <p><strong th:text="#{hotel.address}">Dirección:</strong> <span th:text="${hotel.address}">Dirección</span></p>
+            <p><strong th:text="#{hotel.city}">Ciudad:</strong> <span th:text="${hotel.city.name}">Ciudad</span></p>
 
             <div class="mt-5 d-flex flex-wrap gap-3">
                 <a th:href="@{/hoteles-restaurantes}" class="btn btn-secondary btn-lg">
-                    <i class="bi bi-arrow-left"></i> Volver
+                    <i class="bi bi-arrow-left"></i> <span th:text="#{hotel.button.back}">Volver</span>
                 </a>
                 <a th:href="@{'/paquetes?cityId=' + ${hotel.city.cityId}}" class="btn btn-primary btn-lg">
-                    <i class="bi bi-geo-alt"></i> Paquetes que tienen este hotel
+                    <i class="bi bi-geo-alt"></i> <span th:text="#{hotel.button.packages}">Paquetes que tienen este hotel</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

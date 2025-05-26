@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8">
-    <title>Compra de paquete</title>
+    <title th:text="#{comprar.title}">Compra de paquete</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
@@ -63,80 +63,76 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="container py-5">
-    <h1 class="mb-4 text-center">Finalizar Compra</h1>
+    <h1 class="mb-4 text-center" th:text="#{comprar.header}">Finalizar Compra</h1>
 
     <div class="card mb-4">
         <div class="card-body">
             <h3 th:text="${tourPackage.name}">Nombre del paquete</h3>
-            <p><strong>Precio:</strong> $<span th:text="${tourPackage.price}"></span></p>
-            <p><strong>Descripción:</strong> <span th:text="${tourPackage.description}"></span></p>
-            <p><strong>Ciudad:</strong> <span th:text="${tourPackage.city.name}"></span></p>
+            <p><strong th:text="#{comprar.price}">Precio:</strong> $<span th:text="${tourPackage.price}"></span></p>
+            <p><strong th:text="#{comprar.description}">Descripción:</strong> <span th:text="${tourPackage.description}"></span></p>
+            <p><strong th:text="#{comprar.city}">Ciudad:</strong> <span th:text="${tourPackage.city.name}"></span></p>
         </div>
     </div>
 
     <form th:action="@{/pago}" method="post" onsubmit="return preparePaymentForm()">
-    <input type="hidden" name="tourPackageId" th:value="${tourPackage.packageId}" />
+        <input type="hidden" name="tourPackageId" th:value="${tourPackage.packageId}" />
         <input type="hidden" id="unitPrice" th:value="${tourPackage.price}"/>
         <input type="hidden" name="totalPrice" id="totalPriceInput"/>
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label">Hotel</label>
+                <label class="form-label" th:text="#{comprar.hotel}">Hotel</label>
                 <select name="hotelId" id="hotelId" class="form-select" required>
-                    <option value="" disabled selected>Selecciona un hotel</option>
+                    <option value="" disabled selected th:text="#{comprar.select.hotel}">Selecciona un hotel</option>
                     <option th:each="hotel : ${hotels}" th:value="${hotel.hotelId}" th:text="${hotel.name}"></option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Restaurante</label>
+                <label class="form-label" th:text="#{comprar.restaurant}">Restaurante</label>
                 <select name="restaurantId" id="restaurantId" class="form-select" required>
-                    <option value="" disabled selected>Selecciona un restaurante</option>
+                    <option value="" disabled selected th:text="#{comprar.select.restaurant}">Selecciona un restaurante</option>
                     <option th:each="res : ${restaurants}" th:value="${res.restaurantId}" th:text="${res.name}"></option>
                 </select>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Fecha de inicio</label>
+            <label class="form-label" th:text="#{comprar.startdate}">Fecha de inicio</label>
             <input type="date" name="startDate" id="startDate" class="form-control" required/>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Cantidad de personas</label>
+            <label class="form-label" th:text="#{comprar.people}">Cantidad de personas</label>
             <input type="number" name="numberOfPeople" class="form-control" id="numberOfPeople" min="1" value="1" required oninput="updateTotalPrice()"/>
         </div>
 
         <div class="mb-3 info-price">
             <i class="bi bi-cash-coin"></i>
-            Total a pagar: <strong>$<span id="totalPrice">0</span></strong>
+            <span th:text="#{comprar.total}">Total a pagar:</span> <strong>$<span id="totalPrice">0</span></strong>
         </div>
 
         <!-- NUEVOS CAMPOS PARA SIMULACIÓN DE PAGO -->
         <div class="mb-3">
-            <label class="form-label">Número de tarjeta</label>
-            <input type="text" name="cardNumber" class="form-control" placeholder="Ingrese número de tarjeta" required />
-            <small class="form-text text-muted">Para aprobar el pago, el número debe empezar con 4.</small>
+            <label class="form-label" th:text="#{comprar.cardnumber}">Número de tarjeta</label>
+            <input type="text" name="cardNumber" class="form-control" th:placeholder="#{comprar.cardnumber.placeholder}" required />
+            <small class="form-text text-muted" th:text="#{comprar.cardnumber.hint}">Para aprobar el pago, el número debe empezar con 4.</small>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Correo del comprador</label>
-            <input type="email" name="buyerEmail" class="form-control" placeholder="Correo electrónico" required />
+            <label class="form-label" th:text="#{comprar.email}">Correo del comprador</label>
+            <input type="email" name="buyerEmail" class="form-control" th:placeholder="#{comprar.email.placeholder}" required />
         </div>
 
         <button type="submit" class="btn w-100 mt-3" style="background-color: #14a952; color: #000;">
-            <i class="bi bi-cart-check"></i> Confirmar compra
+            <i class="bi bi-cart-check"></i> <span th:text="#{comprar.button.confirm}">Confirmar compra</span>
         </button>
 
         <button type="button" class="btn btn-danger w-100 mt-2" onclick="history.back()">
-            <i class="bi bi-x-circle"></i> Cancelar compra
+            <i class="bi bi-x-circle"></i> <span th:text="#{comprar.button.cancel}">Cancelar compra</span>
         </button>
     </form>
-
-
-
 </div>
 
-<!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
 <script>
     function updateTotalPrice() {
         const unitPrice = parseFloat(document.getElementById('unitPrice').value);
@@ -153,7 +149,6 @@
 
     window.onload = updateTotalPrice;
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

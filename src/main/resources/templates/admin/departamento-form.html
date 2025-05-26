@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px; max-width: 600px;">
 
         <h2 style="margin-bottom: 20px; color: #1a3d7c;"
-            th:text="${departamento.departmentId == null} ? 'Nuevo Departamento' : 'Editar Departamento'">
+            th:text="${departamento.departmentId == null} ? #{departamento.form.title.new} : #{departamento.form.title.edit}">
             Nuevo Departamento
         </h2>
 
         <form th:action="@{/admin/lugares/departamento/guardar}" th:object="${departamento}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
             <input type="hidden" th:field="*{departmentId}" />
 
-            <label for="name" style="font-weight: 600;">Nombre:</label>
+            <label for="name" style="font-weight: 600;" th:text="#{departamento.form.label.name}">Nombre:</label>
             <input type="text" id="name" th:field="*{name}" required
                    style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;" />
 
-            <label for="description" style="font-weight: 600;">Descripción:</label>
+            <label for="description" style="font-weight: 600;" th:text="#{departamento.form.label.description}">Descripción:</label>
             <textarea id="description" th:field="*{description}" required rows="4"
                       style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; resize: vertical;"></textarea>
 
@@ -36,7 +38,7 @@
                     "
                     onmouseover="this.style.backgroundColor='#1450a0'"
                     onmouseout="this.style.backgroundColor='#1a3d7c'">
-                Guardar
+                <span th:text="#{departamento.form.button.save}">Guardar</span>
             </button>
         </form>
     </div>

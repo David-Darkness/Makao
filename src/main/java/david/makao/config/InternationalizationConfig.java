@@ -18,28 +18,35 @@ public class InternationalizationConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(new Locale("es")); // Idioma por defecto
+        slr.setDefaultLocale(Locale.forLanguageTag("es")); // Más robusto que new Locale("es")
         return slr;
     }
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang"); // el nombre del parámetro que se usará en la URL (?lang=en)
+        lci.setParamName("lang");
         return lci;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(localeChangeInterceptor())
+                .addPathPatterns("/**"); // Asegura que se aplique a todas las rutas
     }
 
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource =
                 new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages");
+        messageSource.setBasenames(
+                "classpath:messages",
+                "classpath:i18n/messages" // Rutas alternativas
+        );
         messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setUseCodeAsDefaultMessage(true); // Usa el código si no encuentra mensaje
+        messageSource.setFallbackToSystemLocale(false); // Evita fallback al locale del sistema
+        messageSource.setCacheSeconds(3600); // Cache de 1 hora
         return messageSource;
     }
 }

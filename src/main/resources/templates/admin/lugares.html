@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px; font-family: Arial, sans-serif;">
-        <h1 style="margin-bottom: 20px; color: #1a3d7c;">Lugares</h1>
+        <h1 style="margin-bottom: 20px; color: #1a3d7c;" th:text="#{lugares.title}">Lugares</h1>
 
-        <h2 style="color: #1a3d7c; margin-top: 30px;">Departamentos</h2>
+        <h2 style="color: #1a3d7c; margin-top: 30px;" th:text="#{lugares.departments.title}">Departamentos</h2>
         <a th:href="@{/admin/lugares/departamento/nuevo}"
            style="
              display: inline-block;
@@ -21,17 +23,18 @@
              transition: background-color 0.3s ease;
            "
            onmouseover="this.style.backgroundColor='#1450a0'"
-           onmouseout="this.style.backgroundColor='#1a3d7c'">
+           onmouseout="this.style.backgroundColor='#1a3d7c'"
+           th:text="#{lugares.departments.create}">
             Crear nuevo departamento
         </a>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <thead style="background-color: #1a3d7c; color: white;">
             <tr>
-                <th style="padding: 10px; text-align: left;">ID</th>
-                <th style="padding: 10px; text-align: left;">Nombre</th>
-                <th style="padding: 10px; text-align: left;">Descripción</th>
-                <th style="padding: 10px; text-align: center;">Acciones</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.id}">ID</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.name}">Nombre</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.description}">Descripción</th>
+                <th style="padding: 10px; text-align: center;" th:text="#{lugares.table.header.actions}">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -48,14 +51,16 @@
                          font-weight: 600;
                        "
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{lugares.action.edit}">
                         Editar
                     </a>
                     <a th:href="@{'/admin/lugares/departamento/eliminar/' + ${dep.departmentId}}"
                        style="color: #c60000; font-weight: 600; text-decoration: none;"
-                       onclick="return confirm('¿Estás seguro de eliminar este departamento?')"
+                       th:onclick="'return confirm(\'' + #{lugares.delete.department.confirm} + '\')'"
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{lugares.action.delete}">
                         Eliminar
                     </a>
                 </td>
@@ -63,7 +68,7 @@
             </tbody>
         </table>
 
-        <h2 style="color: #1a3d7c; margin-top: 40px;">Ciudades</h2>
+        <h2 style="color: #1a3d7c; margin-top: 40px;" th:text="#{lugares.cities.title}">Ciudades</h2>
         <a th:href="@{/admin/lugares/ciudad/nuevo}"
            style="
              display: inline-block;
@@ -78,18 +83,19 @@
              transition: background-color 0.3s ease;
            "
            onmouseover="this.style.backgroundColor='#1450a0'"
-           onmouseout="this.style.backgroundColor='#1a3d7c'">
+           onmouseout="this.style.backgroundColor='#1a3d7c'"
+           th:text="#{lugares.cities.create}">
             Crear nueva ciudad
         </a>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <thead style="background-color: #1a3d7c; color: white;">
             <tr>
-                <th style="padding: 10px; text-align: left;">ID</th>
-                <th style="padding: 10px; text-align: left;">Nombre</th>
-                <th style="padding: 10px; text-align: left;">Descripción</th>
-                <th style="padding: 10px; text-align: left;">Departamento</th>
-                <th style="padding: 10px; text-align: center;">Acciones</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.id}">ID</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.name}">Nombre</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.description}">Descripción</th>
+                <th style="padding: 10px; text-align: left;" th:text="#{lugares.table.header.department}">Departamento</th>
+                <th style="padding: 10px; text-align: center;" th:text="#{lugares.table.header.actions}">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -107,14 +113,16 @@
                          font-weight: 600;
                        "
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{lugares.action.edit}">
                         Editar
                     </a>
                     <a th:href="@{'/admin/lugares/ciudad/eliminar/' + ${ciudad.cityId}}"
                        style="color: #c60000; font-weight: 600; text-decoration: none;"
-                       onclick="return confirm('¿Estás seguro de eliminar esta ciudad?')"
+                       th:onclick="'return confirm(\'' + #{lugares.delete.city.confirm} + '\')'"
                        onmouseover="this.style.textDecoration='underline'"
-                       onmouseout="this.style.textDecoration='none'">
+                       onmouseout="this.style.textDecoration='none'"
+                       th:text="#{lugares.action.delete}">
                         Eliminar
                     </a>
                 </td>
@@ -125,4 +133,3 @@
 </div>
 </body>
 </html>
-

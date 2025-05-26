@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/layout :: adminHead"></head>
+<head th:replace="admin/layout :: adminHead">
+    <meta charset="UTF-8">
+</head>
 <body>
 <div th:replace="admin/layout :: layout">
     <div th:fragment="content" style="padding: 20px; max-width: 700px; margin: 0 auto;">
 
-        <h2 th:text="${restaurante.restaurantId == null} ? 'Nuevo Restaurante' : 'Editar Restaurante'"
+        <h2 th:text="${restaurante.restaurantId == null} ? #{restaurante.form.title.new} : #{restaurante.form.title.edit}"
             style="color: #1a3d7c; margin-bottom: 20px;"></h2>
 
         <form th:action="@{/admin/restaurantes/guardar}" th:object="${restaurante}" method="post"
@@ -14,19 +16,19 @@
 
             <input type="hidden" th:field="*{restaurantId}" />
 
-            <label for="name" style="font-weight: 600;">Nombre:</label>
+            <label for="name" style="font-weight: 600;" th:text="#{restaurante.form.label.name}">Nombre:</label>
             <input type="text" th:field="*{name}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="address" style="font-weight: 600;">Dirección:</label>
+            <label for="address" style="font-weight: 600;" th:text="#{restaurante.form.label.address}">Dirección:</label>
             <input type="text" th:field="*{address}" required
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
-            <label for="info" style="font-weight: 600;">Información:</label>
+            <label for="info" style="font-weight: 600;" th:text="#{restaurante.form.label.info}">Información:</label>
             <textarea th:field="*{info}" required rows="3"
                       style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
-            <label for="cityId" style="font-weight: 600;">Ciudad:</label>
+            <label for="cityId" style="font-weight: 600;" th:text="#{restaurante.form.label.city}">Ciudad:</label>
             <select name="cityId" required
                     style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                 <option th:each="c : ${ciudades}"
@@ -36,13 +38,13 @@
                 </option>
             </select>
 
-            <label for="imageFile" style="font-weight: 600;">Imagen:</label>
+            <label for="imageFile" style="font-weight: 600;" th:text="#{restaurante.form.label.image}">Imagen:</label>
             <input type="file" name="imageFile" accept="image/*"
                    style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
 
             <button type="submit"
                     style="padding: 10px 16px; background-color: #1a3d7c; color: white; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; box-shadow: 0 4px 8px rgba(26, 61, 124, 0.3);">
-                Guardar
+                <span th:text="#{restaurante.form.button.save}">Guardar</span>
             </button>
         </form>
 

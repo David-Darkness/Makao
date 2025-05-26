@@ -2,22 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="adminHead">
     <meta charset="UTF-8" />
-    <title>Admin Panel</title>
+    <title th:text="#{layout.admin.title}">Admin Panel</title>
     <link rel="stylesheet" th:href="@{/css/admin/layout.css}" />
 </head>
 <body>
 <div th:fragment="layout">
     <div class="admin-container">
         <nav class="sidebar">
-            <h2>Makao Admin</h2>
+            <h2 th:text="#{layout.admin.brand}">Makao Admin</h2>
             <ul>
-                <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
-                <li><a th:href="@{/admin/paquetes}">Paquetes</a></li>
-                <li><a th:href="@{/admin/lugares}">Lugares</a></li>
-                <li><a th:href="@{/admin/hoteles}">Hoteles</a></li>
-                <li><a th:href="@{/admin/restaurantes}">Restaurantes</a></li>
-                <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
-                <li class="home-link"><a th:href="@{/templates/user}">← Salir del Portal</a></li>
+                <li><a th:href="@{/admin/dashboard}" th:text="#{layout.menu.dashboard}">Dashboard</a></li>
+                <li><a th:href="@{/admin/paquetes}" th:text="#{layout.menu.packages}">Paquetes</a></li>
+                <li><a th:href="@{/admin/lugares}" th:text="#{layout.menu.places}">Lugares</a></li>
+                <li><a th:href="@{/admin/hoteles}" th:text="#{layout.menu.hotels}">Hoteles</a></li>
+                <li><a th:href="@{/admin/restaurantes}" th:text="#{layout.menu.restaurants}">Restaurantes</a></li>
+                <li><a th:href="@{/admin/usuarios}" th:text="#{layout.menu.users}">Usuarios</a></li>
+                <li class="home-link"><a th:href="@{/home}" th:text="#{layout.menu.exit}">← Salir del Portal</a></li>
             </ul>
         </nav>
 
@@ -28,5 +28,3 @@
 </div>
 </body>
 </html>
-
-

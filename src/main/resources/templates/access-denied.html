@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8" />
-    <title>Acceso Denegado - Makao</title>
+    <title th:text="#{denied.title}">Acceso Denegado - Makao</title>
     <style>
         body {
             background-color: #f5f7fa;
-            color: #c60000; /* azul fuerte, buen contraste */
+            color: #c60000;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -35,7 +35,7 @@
         p {
             font-size: 1.25rem;
             margin-bottom: 35px;
-            color: #3b5998; /* azul medio para texto secundario */
+            color: #3b5998;
             max-width: 400px;
             line-height: 1.5;
         }
@@ -43,7 +43,7 @@
         a.home-button {
             display: inline-block;
             text-decoration: none;
-            background-color: #1a3d7c; /* azul fuerte */
+            background-color: #1a3d7c;
             color: #f5f7fa;
             padding: 14px 40px;
             font-weight: 600;
@@ -78,9 +78,9 @@
     </style>
 </head>
 <body>
-<img src="/images/makao-logo.png" alt="Makao Logo" class="logo" />
-<h1>Acceso Denegado</h1>
-<p>No tienes permisos para acceder a esta página.</p>
-<a href="#" onclick="window.history.back(); return false;" class="home-button">Volver</a>
+<img th:src="@{/images/makao-logo.png}" alt="Makao Logo" class="logo" />
+<h1 th:text="#{denied.header}">Acceso Denegado</h1>
+<p th:text="#{denied.message}">No tienes permisos para acceder a esta página.</p>
+<a href="#" onclick="window.history.back(); return false;" class="home-button" th:text="#{denied.button}">Volver</a>
 </body>
 </html>
