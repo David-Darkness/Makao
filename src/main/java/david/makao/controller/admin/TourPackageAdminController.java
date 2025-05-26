@@ -19,6 +19,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
+/**
+ * Controlador para la administración de paquetes turísticos.
+ * Proporciona funcionalidades CRUD para los paquetes turísticos, incluyendo
+ * la gestión de imágenes asociadas.
+ *
+ * <p>El acceso a los métodos de este controlador está restringido a usuarios
+ * con roles de ADMIN o COLLABORATOR.</p>
+ *
+ * @author David
+ * @version 1.0
+ */
 @Controller
 @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
 @RequestMapping("/admin/paquetes")
@@ -33,6 +44,12 @@ public class TourPackageAdminController {
     // Ruta para guardar las imágenes dentro de static
     private final Path uploadPath = Paths.get("src/main/resources/static/images/imagesPaquetes");
 
+    /**
+     * Muestra la lista de todos los paquetes turísticos disponibles.
+     *
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista que muestra la lista de paquetes
+     */
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping
     public String listarPaquetes(Model model) {
@@ -40,6 +57,12 @@ public class TourPackageAdminController {
         return "admin/paquetes";
     }
 
+    /**
+     * Muestra el formulario para crear un nuevo paquete turístico.
+     *
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de paquetes
+     */
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
@@ -48,6 +71,21 @@ public class TourPackageAdminController {
         return "admin/paquetes-form";
     }
 
+    /**
+     * Guarda un paquete turístico, ya sea nuevo o existente.
+     * Maneja la carga de imágenes asociadas al paquete.
+     *
+     * @param packageId ID del paquete (opcional, para actualización)
+     * @param name Nombre del paquete
+     * @param description Descripción del paquete
+     * @param price Precio del paquete
+     * @param durationDays Duración en días del paquete
+     * @param cityId ID de la ciudad asociada al paquete
+     * @param imageFile Archivo de imagen del paquete (opcional)
+     * @return Redirección a la lista de paquetes
+     * @throws IOException Si ocurre un error al guardar la imagen
+     * @throws IllegalArgumentException Si la imagen supera el tamaño máximo permitido (1MB)
+     */
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @PostMapping("/guardar")
     public String guardarPaquete(
@@ -104,6 +142,13 @@ public class TourPackageAdminController {
         return "redirect:/admin/paquetes";
     }
 
+    /**
+     * Muestra el formulario para editar un paquete turístico existente.
+     *
+     * @param id ID del paquete a editar
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de paquetes o redirección si el paquete no existe
+     */
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/editar/{id}")
     public String editarPaquete(@PathVariable Long id, Model model) {
@@ -116,6 +161,12 @@ public class TourPackageAdminController {
         return "admin/paquetes-form";
     }
 
+    /**
+     * Elimina un paquete turístico.
+     *
+     * @param id ID del paquete a eliminar
+     * @return Redirección a la lista de paquetes
+     */
     @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR')")
     @GetMapping("/eliminar/{id}")
     public String eliminarPaquete(@PathVariable Long id) {
@@ -123,4 +174,3 @@ public class TourPackageAdminController {
         return "redirect:/admin/paquetes";
     }
 }
-

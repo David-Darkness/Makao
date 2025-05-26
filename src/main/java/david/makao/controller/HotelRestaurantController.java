@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+/**
+ * Controlador para mostrar los hoteles y restaurantes disponibles en el sitio web.
+ *
+ * <p>Permite visualizar todos los hoteles y restaurantes, o filtrarlos por ciudad.
+ * También gestiona las vistas de detalle para hoteles y restaurantes individuales.</p>
+ *
+ * @author David
+ * @version 1.0
+ */
 @Controller
 @RequiredArgsConstructor
 public class HotelRestaurantController {
@@ -23,6 +32,16 @@ public class HotelRestaurantController {
     private final HotelRepository hotelRepository;
     private final RestaurantRepository restaurantRepository;
 
+    /**
+     * Muestra la vista combinada de hoteles y restaurantes.
+     *
+     * <p>Si se proporciona un ID de ciudad, se filtran los hoteles y restaurantes
+     * correspondientes a dicha ciudad. Si no se proporciona, se muestran todos.</p>
+     *
+     * @param cityId ID de la ciudad seleccionada (opcional)
+     * @param model Modelo para enviar datos a la vista
+     * @return Nombre de la vista "hoteles-restaurantes"
+     */
     @GetMapping("/hoteles-restaurantes")
     public String showHotelsAndRestaurants(@RequestParam(required = false) Long cityId, Model model) {
         List<CityEntity> cities = (List<CityEntity>) cityRepository.findAll();
@@ -38,6 +57,13 @@ public class HotelRestaurantController {
         return "hoteles-restaurantes";
     }
 
+    /**
+     * Muestra la vista de detalle de un hotel específico.
+     *
+     * @param id ID del hotel a consultar
+     * @param model Modelo para enviar datos a la vista
+     * @return Nombre de la vista "hotel-detalle"
+     */
     @GetMapping("/hoteles/{id}")
     public String hotelDetalle(@PathVariable Long id, Model model) {
         HotelEntity hotel = hotelRepository.findById(id).orElseThrow();
@@ -45,12 +71,17 @@ public class HotelRestaurantController {
         return "hotel-detalle";
     }
 
+    /**
+     * Muestra la vista de detalle de un restaurante específico.
+     *
+     * @param id ID del restaurante a consultar
+     * @param model Modelo para enviar datos a la vista
+     * @return Nombre de la vista "restaurante-detalle"
+     */
     @GetMapping("/restaurantes/{id}")
     public String restauranteDetalle(@PathVariable Long id, Model model) {
         RestaurantEntity restaurante = restaurantRepository.findById(id).orElseThrow();
         model.addAttribute("restaurante", restaurante);
         return "restaurante-detalle";
     }
-
-
 }

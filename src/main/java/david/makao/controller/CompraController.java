@@ -12,11 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Controlador encargado del flujo de compra de paquetes turísticos.
+ *
+ * <p>Permite mostrar el formulario de compra con selección de hotel y restaurante
+ * asociados a la ciudad del paquete, y procesar la reserva tras la confirmación de pago.</p>
+ *
+ * <p>Requiere autenticación con rol {@code ADMIN}, {@code COLLABORATOR} o {@code CUSTOMER}.</p>
+ *
+ * @author David
+ * @version 1.0
+ */
 @Controller
 @PreAuthorize("hasAnyRole('ADMIN', 'COLLABORATOR','CUSTOMER')")
 @RequestMapping("/comprar")
@@ -37,12 +47,21 @@ public class CompraController {
     @Autowired
     private UserRepository userRepository;
 
-    // Mostrar formulario (ya lo tienes, pero para completar)
+    /**
+     * Muestra el formulario de compra de un paquete turístico.
+     *
+     * <p>El formulario incluye la información del paquete, y una lista de hoteles
+     * y restaurantes disponibles en la misma ciudad.</p>
+     *
+     * @param packageId ID del paquete turístico
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de compra, o redirección a página de error si no se encuentra el paquete
+     */
     @GetMapping("/{packageId}")
     public String mostrarFormularioCompra(@PathVariable Long packageId, Model model) {
         Optional<TourPackageEntity> paqueteOpt = tourPackageRepository.findById(packageId);
         if (paqueteOpt.isEmpty()) {
-            return "redirect:/error"; // O página de error
+            return "redirect:/error";
         }
 
         TourPackageEntity paquete = paqueteOpt.get();
@@ -52,12 +71,25 @@ public class CompraController {
         model.addAttribute("hotels", hotelRepository.findByCity_CityId(ciudad.getCityId()));
         model.addAttribute("restaurants", restaurantRepository.findByCity_CityId(ciudad.getCityId()));
 
-        return "comprar-paquete"; // El nombre de tu html
+        return "comprar-paquete";
     }
 
-
-
-    // Procesar la compra (formulario POST)
+    /**
+     * Procesa la confirmación de pago y registra la reserva en la base de datos.
+     *
+     * <p>Obtiene el usuario autenticado, recolecta los datos enviados por el formulario,
+     * y delega la creación de la reserva al servicio correspondiente. Finalmente,
+     * se redirige al usuario a una vista de resumen de la compra.</p>
+     *
+     * @param tourPackageId ID del paquete turístico seleccionado
+     * @param hotelId ID del hotel seleccionado
+     * @param restaurantId ID del restaurante seleccionado
+     * @param startDate Fecha de inicio del viaje
+     * @param numberOfPeople Cantidad de personas en la reserva
+     * @param totalPrice Precio total calculado
+     * @param model Modelo para pasar los datos a la vista de resumen
+     * @return Nombre de la vista que muestra el resumen de la compra
+     */
     @PostMapping("/confirmar-pago")
     public String confirmarPago(
             @RequestParam Long tourPackageId,
@@ -71,11 +103,10 @@ public class CompraController {
         // Obtener usuario autenticado
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
+        UserEntity user = userRepository.findByEmail(username).orElse(null);
 
-        UserEntity user = userRepository.findByEmail(username).orElse(null);  // <- corrección
- // o findByUsername si usas otro campo
         if (user == null) {
-            return "redirect:/login";  // Si no está autenticado
+            return "redirect:/login";
         }
 
         // Preparar datos para la reserva
@@ -91,8 +122,7 @@ public class CompraController {
         // Guardar reserva
         reservationService.crearReserva(datos);
 
-        // Recuperar la reserva para mostrar resumen (opcional: crear método para obtener última reserva del usuario)
-        // Por simplicidad, podrías pasar los datos directamente a la vista:
+        // Cargar datos para mostrar resumen
         model.addAttribute("tourPackage", tourPackageRepository.findById(tourPackageId).orElse(null));
         model.addAttribute("hotel", hotelRepository.findById(hotelId).orElse(null));
         model.addAttribute("restaurant", restaurantRepository.findById(restaurantId).orElse(null));
@@ -100,7 +130,7 @@ public class CompraController {
         model.addAttribute("numberOfPeople", numberOfPeople);
         model.addAttribute("totalPrice", totalPrice);
 
-        return "resumen-compra";  // Vista que muestra resumen de la compra
+        return "resumen-compra";
     }
 }
 

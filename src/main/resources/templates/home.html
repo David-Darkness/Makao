@@ -7,9 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
+    <link rel="icon" type="image/png" th:href="@{/images/icon-makao.png}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/icon-makao.png}">
     <style>
         .hero-section {
             background: #e9f6f8;
@@ -68,8 +69,9 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide1.title}">Los mejores lugares<br>del HUILA Y META</h2>
                         <p class="mb-4 text-center" th:text="#{carousel.slide1.description}">Explora el turismo en los departamentos más hermosos de Colombia.</p>
-                        <a class="btn btn-primary me-2" href="#" th:text="#{button.get.started}">Get Started</a>
-                        <a class="btn btn-outline-primary" href="#" th:text="#{button.learn.more}">Learn more</a>
+                        <a class="btn btn-primary me-2" th:src="@{/paquetes}" th:text="#{button.get.started}">Get Started</a>
+                        <a class="btn btn-outline-primary" th:src="@{/nosotros}" th:text="#{button.learn.more}">Learn
+                            more</a>
                     </div>
                 </div>
 
@@ -82,8 +84,8 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide2.title}">Descubre el Meta</h2>
                         <p class="mb-4 text-center" th:text="#{carousel.slide2.description}">Paisajes llaneros, cultura y aventura sin igual.</p>
-                        <a class="btn btn-primary me-2" href="#" th:text="#{button.explore}">Explorar</a>
-                        <a class="btn btn-outline-primary" href="#" th:text="#{button.see.more}">Ver más</a>
+                        <a class="btn btn-primary me-2" th:src="@{/paquetes}" th:text="#{button.explore}">Explorar</a>
+                        <a class="btn btn-outline-primary" th:src="@{/paquetes}" th:text="#{button.see.more}">Ver más</a>
                     </div>
                 </div>
 
@@ -96,8 +98,9 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h2 class="mb-2 text-center fw-bold" th:text="#{carousel.slide3.title}">Aventuras en el Huila</h2>
                         <p class="mb-4 text-center" th:text="#{carousel.slide3.description}">Ríos, montañas y el desierto de la Tatacoa te esperan.</p>
-                        <a class="btn btn-primary me-2" href="#" th:text="#{button.view.destinations}">Ver destinos</a>
-                        <a class="btn btn-outline-primary" href="#" th:text="#{button.more.info}">Más info</a>
+                        <a class="btn btn-primary me-2" th:src="@{/paquetes}" th:text="#{button.view.destinations}">Ver destinos</a>
+                        <a class="btn btn-outline-primary" th:src="@{/nosotros}" th:text="#{button.more.info}">Más
+                            info</a>
                     </div>
                 </div>
 

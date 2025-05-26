@@ -1,12 +1,12 @@
 package david.makao.service;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class PaymentSimulatorService {
-
-    public boolean procesarPago(String cardNumber, double amount) {
-        // Lógica simulada: si la tarjeta empieza con 4, pago aprobado
-        return cardNumber != null && cardNumber.startsWith("4");
-    }
+public interface PaymentSimulatorService {
+    /**
+     * Simula el procesamiento de un pago con tarjeta.
+     *
+     * @param cardNumber Número de tarjeta (string)
+     * @param amount Monto a pagar
+     * @return true si el pago fue aprobado (ej. tarjeta empieza con 4), false si es rechazado
+     */
+    boolean procesarPago(String cardNumber, double amount);
 }

@@ -15,6 +15,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controlador para la administración de usuarios del sistema.
+ * Proporciona funcionalidades CRUD para la gestión de usuarios y sus roles.
+ *
+ * <p>El acceso a todos los métodos de este controlador está restringido exclusivamente
+ * a usuarios con rol ADMIN.</p>
+ *
+ * @author David
+ * @version 1.0
+ */
 @Controller
 @PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin/usuarios")
@@ -29,7 +39,12 @@ public class UserAdminController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // Mostrar lista de usuarios
+    /**
+     * Muestra la lista de todos los usuarios registrados en el sistema.
+     *
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista que muestra la lista de usuarios
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public String listarUsuarios(Model model) {
@@ -38,7 +53,12 @@ public class UserAdminController {
         return "admin/usuarios";
     }
 
-    // Mostrar formulario para nuevo usuario
+    /**
+     * Muestra el formulario para crear un nuevo usuario.
+     *
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de usuario
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/nuevo")
     public String nuevoUsuario(Model model) {
@@ -47,7 +67,14 @@ public class UserAdminController {
         return "admin/usuarios-form";
     }
 
-    // Guardar usuario (nuevo o editado)
+    /**
+     * Guarda un usuario en el sistema, ya sea nuevo o existente.
+     * Maneja el cifrado de contraseñas y la asignación de roles.
+     *
+     * @param usuario Entidad del usuario a guardar
+     * @param roleIds Lista de IDs de roles a asignar al usuario
+     * @return Redirección a la lista de usuarios
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute UserEntity usuario,
@@ -82,7 +109,13 @@ public class UserAdminController {
         return "redirect:/admin/usuarios";
     }
 
-    // Editar usuario
+    /**
+     * Muestra el formulario para editar un usuario existente.
+     *
+     * @param id ID del usuario a editar
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de usuario o redirección si el usuario no existe
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/editar/{id}")
     public String editarUsuario(@PathVariable Long id, Model model) {
@@ -94,7 +127,12 @@ public class UserAdminController {
         return "admin/usuarios-form";
     }
 
-    // Eliminar usuario
+    /**
+     * Elimina un usuario del sistema.
+     *
+     * @param id ID del usuario a eliminar
+     * @return Redirección a la lista de usuarios
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable Long id) {

@@ -1,32 +1,40 @@
 package david.makao.controller;
 
-import ch.qos.logback.core.model.Model;
-import david.makao.model.TourPackageEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
+/**
+ * Controlador encargado de manejar las rutas relacionadas con el inicio de sesión
+ * y la visualización del navbar.
+ *
+ * <p>Este controlador sirve principalmente vistas estáticas como el formulario de login
+ * y la barra de navegación.</p>
+ *
+ * @author David
+ * @version 1.0
+ */
 @Controller
 public class LoginController {
 
-
-
-
+    /**
+     * Muestra la página de inicio de sesión.
+     *
+     * @return Nombre de la vista "login" (login.html en /templates)
+     */
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login"; // busca login.html en /templates
+        return "login";
     }
 
-
+    /**
+     * Muestra la plantilla del navbar.
+     *
+     * @return Nombre de la vista "navbar" (navbar.html en /templates)
+     */
     @GetMapping("/navbar")
     public String navbar() {
         return "navbar";
     }
-
-
-
-
-
 }
 
