@@ -1,0 +1,374 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final utlizzo versione della libreria JasperReports7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="reservasReporte" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="499d56ae-d86d-4b2e-bde4-9687f8129031">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Nuovo Data Adapter"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<dataset name="reservas" uuid="777c4587-f2dd-4310-9fa7-3d3bd29bbe75">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Nuovo Data Adapter"/>
+		<query language="SQL"><![CDATA[select * from reservations]]></query>
+		<field name="end_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="end_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="end_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="reservation_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="reservation_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="reservation_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="start_date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="start_date"/>
+			<property name="com.jaspersoft.studio.field.label" value="start_date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="hotel_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="hotel_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="hotel_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="package_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="package_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="package_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="reservation_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="reservation_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="reservation_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="restaurant_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="restaurant_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="restaurant_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="user_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="user_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="user_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="number_of_people" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="number_of_people"/>
+			<property name="com.jaspersoft.studio.field.label" value="number_of_people"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<field name="total_price" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="total_price"/>
+			<property name="com.jaspersoft.studio.field.label" value="total_price"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+		</field>
+		<group name="end_date">
+			<expression><![CDATA[$F{end_date}]]></expression>
+		</group>
+		<group name="reservation_date">
+			<expression><![CDATA[$F{reservation_date}]]></expression>
+		</group>
+		<group name="start_date">
+			<expression><![CDATA[$F{start_date}]]></expression>
+		</group>
+		<group name="hotel_id">
+			<expression><![CDATA[$F{hotel_id}]]></expression>
+		</group>
+		<group name="package_id">
+			<expression><![CDATA[$F{package_id}]]></expression>
+		</group>
+		<group name="reservation_id">
+			<expression><![CDATA[$F{reservation_id}]]></expression>
+		</group>
+		<group name="restaurant_id">
+			<expression><![CDATA[$F{restaurant_id}]]></expression>
+		</group>
+		<group name="user_id">
+			<expression><![CDATA[$F{user_id}]]></expression>
+		</group>
+		<group name="number_of_people">
+			<expression><![CDATA[$F{number_of_people}]]></expression>
+		</group>
+		<group name="total_price">
+			<expression><![CDATA[$F{total_price}]]></expression>
+		</group>
+	</dataset>
+	<query language="SQL"><![CDATA[select * from reservations]]></query>
+	<field name="end_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="end_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="end_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="reservation_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="reservation_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="reservation_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="start_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="start_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="start_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="hotel_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="hotel_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="hotel_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="package_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="package_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="package_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="reservation_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="reservation_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="reservation_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="restaurant_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="restaurant_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="restaurant_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="user_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="user_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="user_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="number_of_people" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="number_of_people"/>
+		<property name="com.jaspersoft.studio.field.label" value="number_of_people"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="total_price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<group name="end_date">
+		<expression><![CDATA[$F{end_date}]]></expression>
+	</group>
+	<group name="reservation_date">
+		<expression><![CDATA[$F{reservation_date}]]></expression>
+	</group>
+	<group name="start_date">
+		<expression><![CDATA[$F{start_date}]]></expression>
+	</group>
+	<group name="hotel_id">
+		<expression><![CDATA[$F{hotel_id}]]></expression>
+	</group>
+	<group name="package_id">
+		<expression><![CDATA[$F{package_id}]]></expression>
+	</group>
+	<group name="reservation_id">
+		<expression><![CDATA[$F{reservation_id}]]></expression>
+	</group>
+	<group name="restaurant_id">
+		<expression><![CDATA[$F{restaurant_id}]]></expression>
+	</group>
+	<group name="user_id">
+		<expression><![CDATA[$F{user_id}]]></expression>
+	</group>
+	<group name="number_of_people">
+		<expression><![CDATA[$F{number_of_people}]]></expression>
+	</group>
+	<group name="total_price">
+		<expression><![CDATA[$F{total_price}]]></expression>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="c85da760-12df-4f87-969c-4f9530879273" x="190" y="30" width="200" height="30" fontSize="15.0">
+			<text><![CDATA[REPORTE DE RESERVAS]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="61" splitType="Stretch"/>
+	<detail>
+		<band height="232" splitType="Stretch">
+			<element kind="component" uuid="854a838e-3fdd-49d1-8bc4-37f96b35da41" x="-10" y="32" width="580" height="200">
+				<component kind="table">
+					<datasetRun uuid="93c17e4d-c6e1-47c7-8129-5b4cd79521f9" subDataset="reservas">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<column kind="single" uuid="6ec10315-5d3a-4d04-b892-51e322b97141" width="60">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="a2878925-76cf-42b9-ae29-d8c2564ab8b3" x="0" y="0" width="60" height="30">
+								<text><![CDATA[end_date]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="65d3f571-2671-4c53-8501-16cd65340f30" x="0" y="0" width="60" height="30">
+								<expression><![CDATA[$F{end_date}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="28ddeffe-905a-4d20-bd14-351b73263bdb" width="80">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="51a28083-ebc8-4968-9683-aeaf3787b9d9" x="0" y="0" width="80" height="30">
+								<text><![CDATA[reservation_date]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="cdc235a8-7619-48e3-92e8-68f715f13309" x="0" y="0" width="80" height="30">
+								<expression><![CDATA[$F{reservation_date}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="8d74dd23-129b-4196-a58d-cd5297c99270" width="60">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="43c4bfdb-4a06-48e1-a86a-f7068a01c337" x="0" y="0" width="60" height="30">
+								<text><![CDATA[start_date]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="fe97fa2d-eb35-4786-8dfa-57588fe89a16" x="0" y="0" width="60" height="30">
+								<expression><![CDATA[$F{start_date}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="74e3c041-5f25-4b0b-b8c4-c00217ba1f32" width="50">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="1af15bc6-8b3e-434b-81af-41f430a2135e" x="0" y="0" width="50" height="30">
+								<text><![CDATA[hotel_id]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="25cd3eb3-519b-4bee-a8fe-94f0554de195" x="0" y="0" width="50" height="30">
+								<expression><![CDATA[$F{hotel_id}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="975e8c2d-4c51-47ff-abb2-8484234a87b2" width="70">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="a4814ccd-6c36-40ce-a758-97df1c3568f8" x="0" y="0" width="70" height="30">
+								<text><![CDATA[package_id]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="aff087aa-f8db-4ff7-87f6-17ab798747ea" x="0" y="0" width="70" height="30">
+								<expression><![CDATA[$F{package_id}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="0beff50a-4542-4e98-a367-14f1c665c8ad" width="50">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="97a7eac0-00f0-4682-9dfb-078e38a83792" x="0" y="0" width="50" height="30">
+								<text><![CDATA[reservation_id]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="b2d4ec6a-660a-4188-af6b-598f395781eb" x="0" y="0" width="50" height="30">
+								<expression><![CDATA[$F{reservation_id}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="ef633014-e695-4e44-bd40-9b3840c78708" width="50">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="690f69c1-7072-4fab-80f1-a4ee4acb6596" x="0" y="0" width="50" height="30">
+								<text><![CDATA[restaurant_id]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="33f22c28-9bc3-4c96-be25-469ef848b4f4" x="0" y="0" width="50" height="30">
+								<expression><![CDATA[$F{restaurant_id}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="d576569d-a316-4d80-87ed-0e32a29107dc" width="50">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="6e38110d-a790-4cd1-80cd-77b31f7565ce" x="0" y="0" width="50" height="30">
+								<text><![CDATA[user_id]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="a2478533-3516-442d-ac86-efbf894dbdda" x="0" y="0" width="50" height="30">
+								<expression><![CDATA[$F{user_id}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="af2317d6-5a96-44c5-8da1-9614b95caaaa" width="50">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="739ca185-1d70-4792-b904-ffc081e6ed31" x="0" y="0" width="50" height="30">
+								<text><![CDATA[number_of_people]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="1feca8ac-6242-49fb-b96c-e24168157cb5" x="0" y="0" width="50" height="30">
+								<expression><![CDATA[$F{number_of_people}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="8addaa7a-eb5b-4be4-b1fe-b4ea784079d7" width="60">
+						<tableHeader height="30" style="Table_TH"/>
+						<tableFooter height="30" style="Table_TH"/>
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" uuid="92291d8e-d48c-46c8-9684-4e41528c4173" x="0" y="0" width="60" height="30">
+								<text><![CDATA[total_price]]></text>
+							</element>
+						</columnHeader>
+						<columnFooter height="30" style="Table_CH"/>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="ff60adad-3c71-4e5a-99e4-0256cd2be638" x="0" y="0" width="60" height="30">
+								<expression><![CDATA[$F{total_price}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+				<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+				<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

@@ -64,6 +64,18 @@
             <scope>provided</scope>
         </dependency>
         <!-- Agrega esto en tu pom.xml -->
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-pdf</artifactId>
+            <version>7.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
